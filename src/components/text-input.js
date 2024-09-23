@@ -1,6 +1,7 @@
 import chalk from "chalk"
 import { Text, useInput } from "ink"
 import React, { useEffect, useState } from "react"
+import syntaxHighlight from "#lib/syntax-highlight.js"
 
 // Pulled from https://github.com/vadimdemedes/ink-text-input
 export default function TextInput({
@@ -11,6 +12,7 @@ export default function TextInput({
   placeholder = "",
   placeholderColor = "#FFFFFF",
   showCursor = true,
+  syntax = "",
   value: originalValue,
   width = 0,
   ...props
@@ -110,6 +112,13 @@ export default function TextInput({
     const renderedValueLength = focus && showCursor ? renderedText.length : renderedText.length + 9
     const length = placeholder ? (value.length > 0 ? renderedValueLength : placeholder.length + 9) : renderedValueLength
     renderedText += " ".repeat(width > length ? width - length : 0)
+  }
+
+  if (syntax) {
+    renderedText = syntaxHighlight(renderedText, {
+      ignoreIllegals: true,
+      language: syntax,
+    })
   }
 
   return <Text {...props}>{renderedText}</Text>
