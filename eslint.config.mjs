@@ -24,6 +24,7 @@ export default [
       "perfectionist/sort-named-exports": "error",
       "perfectionist/sort-objects": "error",
       "react/jsx-sort-props": "error",
+      "react/prop-types": "off",
       "sort-destructure-keys/sort-destructure-keys": "error",
       ...eslintPluginReactHooks.configs.recommended.rules,
     }

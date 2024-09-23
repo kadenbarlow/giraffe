@@ -1,6 +1,8 @@
 import { Box, useApp, useInput } from "ink"
 import React from "react"
 import Header from "#components/header.js"
+import QueryEditor from "#components/query-editor.js"
+import Response from "#components/response.js"
 import useScreenSize from "#hooks/use-screen-size.js"
 
 export default function App({ args }) {
@@ -14,8 +16,12 @@ export default function App({ args }) {
   })
 
   return (
-    <Box height={height} paddingX={2} paddingY={1} width={width}>
+    <Box flexDirection="column" height={height} paddingX={2} paddingY={1} width={width}>
       <Header />
+      <Box flexDirection="row" height="100%">
+        <QueryEditor />
+        <Response />
+      </Box>
     </Box>
   )
 }
