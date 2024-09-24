@@ -5,7 +5,7 @@ import syntaxHighlight from "#lib/syntax-highlight.js"
 import useController from "./hooks/use-controller/index.js"
 
 export default function TextInput(props) {
-  const { displayValue, inkProps } = useController(props)
+  const { formattedValue, inkProps } = useController(props)
 
-  return <Text {...inkProps}>{displayValue}</Text>
+  return <Text {...inkProps}>{formattedValue}</Text>
 }

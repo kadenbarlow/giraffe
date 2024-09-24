@@ -4,12 +4,20 @@ export default function handleKeypress(ctx) {
     if (key.leftArrow) {
       return {
         ...ctx,
-        cursorOffset: cursorOffset - 1,
+        cursorOffset: {
+          ...cursorOffset,
+          formattedXOffset: cursorOffset.formattedXOffset - 1,
+          unformattedXOffset: cursorOffset.unformattedXOffset - 1,
+        },
       }
     } else if (key.rightArrow) {
       return {
         ...ctx,
-        cursorOffset: cursorOffset + 1,
+        cursorOffset: {
+          ...cursorOffset,
+          formattedXOffset: cursorOffset.formattedXOffset + 1,
+          unformattedXOffset: cursorOffset.unformattedXOffset + 1,
+        },
       }
     }
   }

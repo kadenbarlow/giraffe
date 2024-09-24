@@ -16,12 +16,19 @@ const FUNCTION_KEYS = [
 ]
 
 export default function handleInsertions(ctx) {
-  const { cursorOffset, displayValue, focus, input, key } = ctx
+  const { cursorOffset, focus, input, key, unformattedValue } = ctx
   if (focus && input && FUNCTION_KEYS.every((pressed) => !key[pressed])) {
     return {
       ...ctx,
-      cursorOffset: cursorOffset + 1,
-      displayValue: displayValue.slice(0, cursorOffset) + input + displayValue.slice(cursorOffset),
+      cursorOffset: {
+        ...cursorOffset,
+        unformattedXOffset: cursorOffset.unformattedXOffset + 1,
+      },
+      insertion: true,
+      unformattedValue:
+        unformattedValue.slice(0, cursorOffset.unformattedXOffset) +
+        input +
+        unformattedValue.slice(cursorOffset.unformattedXOffset),
     }
   }
   return ctx
