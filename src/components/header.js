@@ -1,6 +1,6 @@
 import { Box, Text, useFocus } from "ink"
 import React, { useState } from "react"
-import TextInput from "#components/text-input.js"
+import TextInput from "#components/text-input/index.js"
 import useScreenSize from "#hooks/use-screen-size.js"
 import useTheme from "#hooks/use-theme.js"
 import pSBC from "#lib/pSBC.js"
@@ -28,7 +28,7 @@ export default function Header(props) {
           placeholder="Enter a URL..."
           placeholderColor={pSBC(0.4, colors.background)}
           value={query}
-          width={width / 2 - 8}
+          width={width / 2 - 18}
         />
       </Box>
     </Box>

@@ -1,7 +1,10 @@
 import chalk from "chalk"
 import hljs from "highlight.js/lib/core"
+import json from "highlight.js/lib/languages/json"
 import * as parse5 from "parse5"
 import * as htmlparser2Adapter from "parse5-htmlparser2-tree-adapter"
+
+hljs.registerLanguage("json", json)
 
 function graphql(hljs) {
   return {
@@ -79,21 +82,12 @@ hljs.registerLanguage("graphql", graphql)
 
 export const plain = (codePart) => codePart
 
-export const DEFAULT_THEME = {
-  arg: chalk.cyan,
-  attribute: chalk.yellow,
-  keyword: chalk.blue,
-  string: chalk.green,
-  type: chalk.red,
-  variable: chalk.magenta,
-}
-
 function colorizeNode(node, theme = {}, context) {
   switch (node.type) {
     case "text": {
       const text = node.data
       if (context === undefined) {
-        return (theme.default || DEFAULT_THEME.default || plain)(text)
+        return (theme.default || plain)(text)
       }
       return text
     }
@@ -102,7 +96,7 @@ function colorizeNode(node, theme = {}, context) {
       if (hljsClass) {
         const token = hljsClass[1]
         const nodeData = node.childNodes.map((node) => colorizeNode(node, theme, token)).join("")
-        return (theme[token] || DEFAULT_THEME[token] || plain)(nodeData)
+        return (theme[token] || plain)(nodeData)
       }
 
       // Return the data itself when the class name isn't prefixed with a highlight.js token prefix.
@@ -127,6 +121,14 @@ export default function syntaxHighlight(code, options = {}) {
   } else {
     html = hljs.highlightAuto(code, options.languageSubset).value
   }
-  // return html
-  return colorize(html, options.theme)
+
+  let theme
+  if (options.theme) {
+    theme = {}
+    Object.entries(options.theme || {}).forEach(([key, value]) => {
+      theme[key] = chalk.hex(value)
+    })
+  }
+
+  return colorize(html, theme)
 }
