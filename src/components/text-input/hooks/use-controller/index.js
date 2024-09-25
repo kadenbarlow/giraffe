@@ -1,5 +1,6 @@
 import { useInput } from "ink"
 import { useEffect, useRef, useState } from "react"
+import pipe from "#lib/pipe/index.js"
 import applyCursor from "./actions/apply-cursor.js"
 import applySyntaxHighlighting from "./actions/apply-syntax-highlighting.js"
 import applyWidth from "./actions/apply-width.js"
@@ -8,11 +9,6 @@ import handleInsertions from "./actions/handle-insertions.js"
 import updateCursorOffset from "./actions/update-cursor-offset.js"
 import updateFormattedValue from "./actions/update-formatted-value.js"
 import updateUnformattedValue from "./actions/update-unformatted-value.js"
-
-const pipe =
-  (...fns) =>
-  (x) =>
-    fns.reduce((v, f) => f(v), x)
 
 export default function useController(props) {
   const { focus, syntax, syntaxTheme, value, width, ...inkProps } = props
@@ -28,7 +24,7 @@ export default function useController(props) {
 
   useInput(
     (input, key) =>
-      pipe(
+      pipe.sync(
         handleInsertions,
         handleArrowKeys,
         applyWidth,
@@ -56,7 +52,7 @@ export default function useController(props) {
 
   useEffect(
     function initialize() {
-      pipe(
+      pipe.sync(
         applyWidth,
         applySyntaxHighlighting,
         applyCursor,
