@@ -28,7 +28,7 @@ export default function handleInsertions(ctx) {
     ...ctx,
     cursorOffset: {
       ...cursorOffset,
-      x: cursorOffset.x + 1,
+      x: cursorOffset.x + input.length,
     },
     unformattedValue: unformattedValue.slice(0, cursorOffset.x) + content + unformattedValue.slice(cursorOffset.x),
   }

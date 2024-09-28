@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import App from "#components/app.js"
+import App from "#components/app/index.js"
 import pipe from "#lib/pipe/index.js"
 import { enterFullscreen, exitFullscreen, processArgv, renderApp, waitUntilExit } from "./actions/index.js"
 

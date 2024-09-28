@@ -6,16 +6,14 @@ export default function handleKeypress(ctx) {
         ...ctx,
         cursorOffset: {
           ...cursorOffset,
-          direction: -1,
           x: cursorOffset.x - 1,
         },
       }
-    } else if (key.rightArrow && cursorOffset.x < ctx.unformattedValue.length - 1) {
+    } else if (key.rightArrow && cursorOffset.x < ctx.unformattedValue.length) {
       return {
         ...ctx,
         cursorOffset: {
           ...cursorOffset,
-          direction: 1,
           x: cursorOffset.x + 1,
         },
       }

@@ -6,7 +6,7 @@ import useTheme from "#hooks/use-theme.js"
 export default function QueryEditor({ ...props }) {
   const { isFocused } = useFocus()
   const { colors, syntax } = useTheme()
-  const [query, setQuery] = useState("mutation {}")
+  const [query, setQuery] = useState("")
 
   return (
     <Box

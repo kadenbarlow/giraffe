@@ -20,13 +20,12 @@ export default function Header(props) {
         <Text color={colors.accent}> 1.2.1</Text>
       </Box>
       <Box width="100%">
+        <Text>Graphql Endpoint: </Text>
         <TextInput
           backgroundColor={pSBC(0.03, colors.background)}
           color="white"
           focus={isFocused}
           onChange={setQuery}
-          placeholder="Enter a URL..."
-          placeholderColor={pSBC(0.4, colors.background)}
           value={query}
           width={width / 2 - 18}
         />

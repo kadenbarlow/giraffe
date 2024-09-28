@@ -1,7 +1,5 @@
-import chalk from "chalk"
-import { Text, useInput } from "ink"
-import React, { useEffect, useState } from "react"
-import syntaxHighlight from "#lib/syntax-highlight.js"
+import { Text } from "ink"
+import React from "react"
 import useController from "./hooks/use-controller/index.js"
 
 export default function TextInput(props) {
