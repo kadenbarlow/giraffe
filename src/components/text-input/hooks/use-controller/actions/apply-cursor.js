@@ -1,38 +1,32 @@
 import chalk from "chalk"
 
 export default function applyCursor(ctx) {
-  const { cursorOffset, focus, formattedValue, insertion } = ctx
+  const { cursorOffset, direction, focus, unformattedValue } = ctx
 
   if (focus) {
-    let adjustedCursorOffset = cursorOffset.formattedXOffset
-    while (formattedValue[adjustedCursorOffset] === "\x1B" && formattedValue[adjustedCursorOffset + 1] === "[") {
-      adjustedCursorOffset = formattedValue.indexOf("m", adjustedCursorOffset) + 1
-    }
-    while (formattedValue[adjustedCursorOffset] === "m" && !isNaN(formattedValue[adjustedCursorOffset - 1])) {
-      adjustedCursorOffset = formattedValue.lastIndexOf("\x1B", adjustedCursorOffset) - 1
+    let highlightPosition = cursorOffset.x
+    if (
+      unformattedValue[highlightPosition] === "\n" &&
+      highlightPosition < unformattedValue.length &&
+      highlightPosition > 0
+    ) {
+      direction === 1 ? highlightPosition++ : highlightPosition--
     }
 
-    if (insertion) adjustedCursorOffset += 1
-    while (formattedValue[adjustedCursorOffset] === "\x1B" && formattedValue[adjustedCursorOffset + 1] === "[") {
-      adjustedCursorOffset = formattedValue.indexOf("m", adjustedCursorOffset) + 1
-    }
-    while (formattedValue[adjustedCursorOffset] === "m" && !isNaN(formattedValue[adjustedCursorOffset - 1])) {
-      adjustedCursorOffset = formattedValue.lastIndexOf("\x1B", adjustedCursorOffset) - 1
+    let content = unformattedValue[highlightPosition] || " "
+    if (unformattedValue[highlightPosition] === "\n") {
+      content = content + chalk.inverse(" ")
+    } else {
+      content = chalk.inverse(content)
     }
 
     const newDisplayValue =
-      formattedValue.slice(0, adjustedCursorOffset) +
-      chalk.inverse(formattedValue[adjustedCursorOffset] || " ") +
-      formattedValue.slice(adjustedCursorOffset + 1)
+      unformattedValue.slice(0, highlightPosition) + content + unformattedValue.slice(highlightPosition + 1)
 
     return {
       ...ctx,
-      cursorOffset: {
-        ...cursorOffset,
-        formattedXOffset: adjustedCursorOffset,
-      },
       formattedValue: newDisplayValue,
     }
   }
-  return ctx
+  return { ...ctx, formattedValue: unformattedValue }
 }

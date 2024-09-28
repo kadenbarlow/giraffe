@@ -13,12 +13,7 @@ import updateUnformattedValue from "./actions/update-unformatted-value.js"
 export default function useController(props) {
   const { focus, multiline, syntax, syntaxTheme, value, width, ...inkProps } = props
 
-  const cursorOffset = useRef({
-    formattedXOffset: 0,
-    formattedYOffset: 0,
-    unformattedXOffset: 0,
-    unformattedYOffset: 0,
-  })
+  const cursorOffset = useRef({ x: 0, y: 0 })
   const unformattedValue = useRef(value)
   const [formattedValue, setFormattedValue] = useState(value)
 
@@ -31,13 +26,13 @@ export default function useController(props) {
     (input, key) =>
       pipe.sync(
         handleInsertions,
+        updateUnformattedValue,
         handleArrowKeys,
+        updateCursorOffset,
+        applyCursor,
         applyWidth,
         applySyntaxHighlighting,
-        applyCursor,
-        updateUnformattedValue,
         updateFormattedValue,
-        updateCursorOffset,
       )({
         cursorOffset: cursorOffset.current,
         cursorOffsetRef: cursorOffset,
@@ -59,12 +54,10 @@ export default function useController(props) {
   useEffect(
     function initialize() {
       pipe.sync(
+        applyCursor,
         applyWidth,
         applySyntaxHighlighting,
-        applyCursor,
-        updateUnformattedValue,
         updateFormattedValue,
-        updateCursorOffset,
       )({
         cursorOffset: cursorOffset.current,
         cursorOffsetRef: cursorOffset,

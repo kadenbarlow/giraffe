@@ -1,9 +1,9 @@
 export default function applyWidth(ctx) {
-  const { unformattedValue, width } = ctx
+  const { formattedValue, width } = ctx
   if (width) {
-    if (unformattedValue.length < width) {
-      return { ...ctx, formattedValue: unformattedValue + " ".repeat(width - unformattedValue.length) }
+    if (formattedValue.length < width) {
+      return { ...ctx, formattedValue: formattedValue + " ".repeat(width - formattedValue.length) }
     }
   }
-  return { ...ctx, formattedValue: unformattedValue }
+  return ctx
 }

@@ -56,7 +56,7 @@ function graphql(hljs) {
       },
     ],
     disableAutodetect: false,
-    illegal: [/[;<']/, /BEGIN/],
+    illegal: [/[;<']/, /BEGIN/, "\x1B.*?m"],
     keywords: {
       keyword: [
         "query",
@@ -115,12 +115,7 @@ function colorize(code, theme = {}) {
 }
 
 export default function syntaxHighlight(code, options = {}) {
-  let html
-  if (options.language) {
-    html = hljs.highlight(code, { ignoreIllegals: options.ignoreIllegals, language: options.language }).value
-  } else {
-    html = hljs.highlightAuto(code, options.languageSubset).value
-  }
+  const html = hljs.highlight(code, { ignoreIllegals: true, language: options.language }).value
 
   let theme
   if (options.theme) {

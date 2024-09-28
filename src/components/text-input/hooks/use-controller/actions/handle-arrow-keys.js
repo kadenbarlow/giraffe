@@ -1,22 +1,22 @@
 export default function handleKeypress(ctx) {
   const { cursorOffset, focus, key } = ctx
   if (focus) {
-    if (key.leftArrow) {
+    if (key.leftArrow && cursorOffset.x > 0) {
       return {
         ...ctx,
         cursorOffset: {
           ...cursorOffset,
-          formattedXOffset: cursorOffset.formattedXOffset - 1,
-          unformattedXOffset: cursorOffset.unformattedXOffset - 1,
+          direction: -1,
+          x: cursorOffset.x - 1,
         },
       }
-    } else if (key.rightArrow) {
+    } else if (key.rightArrow && cursorOffset.x < ctx.unformattedValue.length - 1) {
       return {
         ...ctx,
         cursorOffset: {
           ...cursorOffset,
-          formattedXOffset: cursorOffset.formattedXOffset + 1,
-          unformattedXOffset: cursorOffset.unformattedXOffset + 1,
+          direction: 1,
+          x: cursorOffset.x + 1,
         },
       }
     }
