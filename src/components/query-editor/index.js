@@ -1,5 +1,6 @@
 import { Box, useFocus } from "ink"
 import React, { useState } from "react"
+import Tabs from "#components/tabs/index.js"
 import TextInput from "#components/text-input/index.js"
 import useTheme from "#hooks/use-theme.js"
 
@@ -12,11 +13,13 @@ export default function QueryEditor({ ...props }) {
     <Box
       borderColor={isFocused ? colors.accent : "white"}
       borderStyle="single"
+      flexDirection="column"
       height="100%"
       paddingX={1}
-      width="50%"
+      width="100%"
       {...props}
     >
+      <Tabs tabs={["Request"]} value="Request" />
       <TextInput
         focus={isFocused}
         multiline={true}
