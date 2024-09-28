@@ -1,4 +1,4 @@
-import syntaxHighlight from "#lib/syntax-highlight.js"
+import highlight from "#lib/syntax-highlighting/index.js"
 
 export default function applySyntaxHighlighting(ctx) {
   const { formattedValue, syntax, syntaxTheme } = ctx
@@ -6,7 +6,7 @@ export default function applySyntaxHighlighting(ctx) {
     ...ctx,
     formattedValue:
       syntax && syntaxTheme
-        ? syntaxHighlight(formattedValue, {
+        ? highlight(formattedValue, {
             language: syntax,
             theme: syntaxTheme,
           })

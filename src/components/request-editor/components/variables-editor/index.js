@@ -8,12 +8,12 @@ export default function VariablesEditor({ focus, ...props }) {
   const { syntax } = useTheme()
 
   return (
-    <Box {...props}>
+    <Box paddingTop={1} {...props}>
       <TextInput
         focus={focus}
         multiline={true}
         onChange={setVariables}
-        syntax="json"
+        syntax="jsonc"
         syntaxTheme={syntax.json}
         value={variables}
       />

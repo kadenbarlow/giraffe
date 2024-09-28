@@ -20,14 +20,16 @@ export default function QueryEditor({ ...props }) {
       {...props}
     >
       <Tabs tabs={["Request"]} value="Request" />
-      <TextInput
-        focus={isFocused}
-        multiline={true}
-        onChange={setQuery}
-        syntax="gql"
-        syntaxTheme={syntax.graphql}
-        value={query}
-      />
+      <Box paddingTop={1}>
+        <TextInput
+          focus={isFocused}
+          multiline={true}
+          onChange={setQuery}
+          syntax="gql"
+          syntaxTheme={syntax.graphql}
+          value={query}
+        />
+      </Box>
     </Box>
   )
 }
