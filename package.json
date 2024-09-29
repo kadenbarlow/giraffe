@@ -22,7 +22,8 @@
     "parse5": "^5.0.1",
     "parse5-htmlparser2-tree-adapter": "^5.0.1",
     "react": "^18.2.0",
-    "tree-sitter": "^0.21.1"
+    "tree-sitter": "^0.21.1",
+    "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",
@@ -56,7 +57,9 @@
             "#hooks": "./src/hooks",
             "#hooks/*": "./src/hooks/*",
             "#lib": "./src/lib",
-            "#lib/*": "./src/lib/*"
+            "#lib/*": "./src/lib/*",
+            "#stores": "./src/stores",
+            "#stores/*": "./src/stores/*"
           }
         }
       ]

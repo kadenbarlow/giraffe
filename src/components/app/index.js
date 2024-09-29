@@ -1,19 +1,24 @@
 import { Box, useApp, useInput } from "ink"
 import React from "react"
 import Header from "#components/header/index.js"
+import KeyboardShortcuts from "#components/keyboard-shorcuts/index.js"
 import QueryEditor from "#components/query-editor/index.js"
 import RequestEditor from "#components/request-editor/index.js"
 import Response from "#components/response/index.js"
 import useScreenSize from "#hooks/use-screen-size.js"
+import useController from "./hooks/use-controller/index.js"
 
 export default function App({ args }) {
   const app = useApp()
   const { height, width } = useScreenSize()
+  const { actions } = useController()
 
   useInput((input, key) => {
-    // if (input === "q") {
-    //   app.exit()
-    // }
+    if (key.ctrl && input === "q") {
+      app.exit()
+    } else if (key.ctrl && input === "s") {
+      actions.sendRequest()
+    }
   })
 
   return (
@@ -32,6 +37,7 @@ export default function App({ args }) {
           <Response />
         </Box>
       </Box>
+      <KeyboardShortcuts />
     </Box>
   )
 }

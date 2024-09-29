@@ -1,11 +1,13 @@
 import { Box } from "ink"
-import React, { useState } from "react"
+import React from "react"
 import TextInput from "#components/text-input/index.js"
 import useTheme from "#hooks/use-theme.js"
+import useRequestStore from "#stores/use-request-store.js"
 
 export default function VariablesEditor({ focus, ...props }) {
-  const [variables, setVariables] = useState("")
   const { syntax } = useTheme()
+  const variables = useRequestStore((state) => state.variables)
+  const setVariables = useRequestStore((state) => state.setVariables)
 
   return (
     <Box paddingTop={1} {...props}>

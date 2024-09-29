@@ -1,4 +1,4 @@
-import { Box, Text, useFocus } from "ink"
+import { Box, useFocus } from "ink"
 import React, { useState } from "react"
 import Tabs from "#components/tabs/index.js"
 import useTheme from "#hooks/use-theme.js"

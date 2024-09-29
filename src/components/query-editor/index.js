@@ -1,13 +1,15 @@
 import { Box, useFocus } from "ink"
-import React, { useState } from "react"
+import React from "react"
 import Tabs from "#components/tabs/index.js"
 import TextInput from "#components/text-input/index.js"
 import useTheme from "#hooks/use-theme.js"
+import useRequestStore from "#stores/use-request-store.js"
 
 export default function QueryEditor({ ...props }) {
   const { isFocused } = useFocus()
   const { colors, syntax } = useTheme()
-  const [query, setQuery] = useState("")
+  const query = useRequestStore((state) => state.query)
+  const setQuery = useRequestStore((state) => state.setQuery)
 
   return (
     <Box
