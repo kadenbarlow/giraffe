@@ -9,7 +9,7 @@ const TABS = {
   HEADERS: "Headers", // eslint-disable-line
 }
 
-export default function RequestEditor({ ...props }) {
+export default function BottomPanel({ ...props }) {
   const { isFocused } = useFocus()
   const { colors } = useTheme()
   const [activeTab, setActiveTab] = useState(TABS.VARIABLES)

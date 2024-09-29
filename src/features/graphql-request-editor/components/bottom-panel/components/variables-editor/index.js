@@ -1,8 +1,8 @@
 import { Box } from "ink"
 import React from "react"
 import TextInput from "#components/text-input/index.js"
+import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
 import useTheme from "#hooks/use-theme.js"
-import useRequestStore from "#stores/use-request-store.js"
 
 export default function VariablesEditor({ focus, ...props }) {
   const { syntax } = useTheme()

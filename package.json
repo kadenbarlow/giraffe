@@ -54,6 +54,8 @@
           "alias": {
             "#components": "./src/components",
             "#components/*": "./src/components/*",
+            "#features": "./src/features",
+            "#features/*": "./src/features/*",
             "#hooks": "./src/hooks",
             "#hooks/*": "./src/hooks/*",
             "#lib": "./src/lib",

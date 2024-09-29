@@ -2,10 +2,10 @@ import { Box, useFocus } from "ink"
 import React from "react"
 import Tabs from "#components/tabs/index.js"
 import TextInput from "#components/text-input/index.js"
+import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
 import useTheme from "#hooks/use-theme.js"
-import useRequestStore from "#stores/use-request-store.js"
 
-export default function QueryEditor({ ...props }) {
+export default function LeftPanel({ ...props }) {
   const { isFocused } = useFocus()
   const { colors, syntax } = useTheme()
   const query = useRequestStore((state) => state.query)

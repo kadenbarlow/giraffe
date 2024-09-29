@@ -1,10 +1,10 @@
 import { Box, Text, useFocus } from "ink"
 import React from "react"
 import TextInput from "#components/text-input/index.js"
+import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
 import useScreenSize from "#hooks/use-screen-size.js"
 import useTheme from "#hooks/use-theme.js"
 import pSBC from "#lib/pSBC.js"
-import useRequestStore from "#stores/use-request-store.js"
 
 export default function Header(props) {
   const { colors } = useTheme()

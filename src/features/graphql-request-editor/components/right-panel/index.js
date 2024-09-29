@@ -1,13 +1,12 @@
 import { Box, Text, useFocus } from "ink"
 import React from "react"
 import Tabs from "#components/tabs/index.js"
+import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
 import useTheme from "#hooks/use-theme.js"
-import syntaxHighlight from "#lib/syntax-highlight.js"
-import useRequestStore from "#stores/use-request-store.js"
 
-export default function Response({ ...props }) {
+export default function RightPanel({ ...props }) {
   const { isFocused } = useFocus()
-  const { colors, syntax } = useTheme()
+  const { colors } = useTheme()
   const response = useRequestStore((state) => state.response)
 
   return (
@@ -20,7 +19,7 @@ export default function Response({ ...props }) {
       width="100%"
       {...props}
     >
-      <Tabs tabs={["Response", "Collections"]} value="Response" />
+      <Tabs tabs={["Response", "Schema", "Collections"]} value="Response" />
       <Box paddingTop={1}>
         <Text>{JSON.stringify(response)}</Text>
       </Box>
