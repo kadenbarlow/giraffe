@@ -18,7 +18,7 @@ export default function graphql(hljs) {
       },
       {
         match: "\\w+:",
-        scope: "arg",
+        scope: "kwarg",
       },
       {
         match: '\\".*\\"',

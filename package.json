@@ -21,6 +21,7 @@
     "meow": "^11.0.0",
     "parse5": "^5.0.1",
     "parse5-htmlparser2-tree-adapter": "^5.0.1",
+    "prettier": "^3.3.3",
     "react": "^18.2.0",
     "tree-sitter": "^0.21.1",
     "zustand": "^5.0.0-rc.2"
@@ -37,8 +38,7 @@
     "eslint-plugin-perfectionist": "^3.6.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-sort-destructure-keys": "^2.0.0",
-    "prettier": "^3.3.3"
+    "eslint-plugin-sort-destructure-keys": "^2.0.0"
   },
   "babel": {
     "presets": [

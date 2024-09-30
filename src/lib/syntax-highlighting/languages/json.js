@@ -1,7 +1,7 @@
 export default function json(hljs) {
   const ATTRIBUTE = {
     begin: /"(\\.|[^\\"\r\n])*"(?=\s*:)/,
-    className: "attr",
+    className: "attribute",
     relevance: 1.01,
   }
 

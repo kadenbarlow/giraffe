@@ -5,12 +5,10 @@ import Header from "./components/header/index.js"
 import KeyboardShortcuts from "./components/keyboard-shorcuts/index.js"
 import LeftPanel from "./components/left-panel/index.js"
 import RightPanel from "./components/right-panel/index.js"
-import useController from "./hooks/use-controller/index.js"
 import useInput from "./hooks/use-input/index.js"
 
 export default function GraphqlRequestEditor() {
-  const { actions } = useController()
-  useInput({ actions })
+  useInput()
 
   return (
     <Box flexDirection="column" height="100%" width="100%">

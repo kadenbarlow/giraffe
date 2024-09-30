@@ -1,16 +1,19 @@
 import { useApp, useInput } from "ink"
+import useFormatting from "./hooks/use-formatting/index.js"
+import useSendRequest from "./hooks/use-send-request/index.js"
 
-export default ({ actions }) => {
+export default () => {
   const app = useApp()
+  const { formatEditorContent } = useFormatting()
+  const { sendRequest } = useSendRequest()
 
   useInput((input, key) => {
-    debugger
     if (key.ctrl && input === "q") {
       app.exit()
     } else if (key.ctrl && input === "p") {
-      actions.formatJsonValues()
+      formatEditorContent()
     } else if (key.ctrl && input === "s") {
-      actions.sendRequest()
+      sendRequest()
     }
   })
 }
