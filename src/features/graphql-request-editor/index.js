@@ -15,10 +15,10 @@ export default function GraphqlRequestEditor() {
       <Header />
       <Box flexDirection="row" height="100%">
         <Box flexDirection="column" width="50%">
-          <Box height="50%">
+          <Box height="60%">
             <LeftPanel />
           </Box>
-          <Box height="50%">
+          <Box height="40%">
             <BottomPanel />
           </Box>
         </Box>

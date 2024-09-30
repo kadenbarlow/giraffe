@@ -5,19 +5,23 @@ export default function useController() {
 
   const sendRequest = async () => {
     const { headers, query, url, variables } = useRequestStore.getState()
-    return fetch(url, {
-      body: JSON.stringify({
-        query,
-        variables: variables ? JSON.parse(variables) : {},
-      }),
-      headers: {
-        "Content-Type": "application/json",
-        ...headers,
-      },
-      method: "POST",
-    })
-      .then((response) => setResponse(response.json()))
-      .catch((error) => setResponse(error.message))
+    try {
+      const response = await fetch(url, {
+        body: JSON.stringify({
+          query,
+          variables: variables ? JSON.parse(variables) : {},
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          ...headers,
+        },
+        method: "POST",
+      })
+      const json = await response.json()
+      setResponse(JSON.stringify(json, null, 2))
+    } catch (error) {
+      setResponse(error.message)
+    }
   }
 
   return { sendRequest }
