@@ -1,5 +1,5 @@
 export default function callOnChange(ctx) {
-  const { onChange, unformattedValue } = ctx
-  onChange(unformattedValue)
+  const { onChange, value } = ctx
+  onChange(value)
   return ctx
 }

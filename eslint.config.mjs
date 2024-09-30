@@ -10,7 +10,8 @@ export default [
   {
     languageOptions: {
       globals: {
-        process: "readonly"
+        fetch: "readonly",
+        process: "readonly",
       }
     },
     plugins: {

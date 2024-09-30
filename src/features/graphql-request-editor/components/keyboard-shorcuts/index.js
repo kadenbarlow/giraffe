@@ -7,6 +7,7 @@ export default function KeyboardShortcuts() {
       <Text> ^j send </Text>
       <Text> ^n new </Text>
       <Text> ^o jump </Text>
+      <Text> ^p format </Text>
       <Text> ^q quit </Text>
       <Text> ^s save </Text>
     </Box>

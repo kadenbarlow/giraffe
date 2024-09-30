@@ -1,7 +1,7 @@
 import { create } from "zustand"
 
 const useRequestStore = create((set) => ({
-  headers: "",
+  headers: "{}",
   query: "",
   response: "",
   setHeaders: (headers) => set({ headers }),
@@ -10,6 +10,6 @@ const useRequestStore = create((set) => ({
   setUrl: (url) => set({ url }),
   setVariables: (variables) => set({ variables }),
   url: "",
-  variables: "",
+  variables: "{}",
 }))
 export default useRequestStore

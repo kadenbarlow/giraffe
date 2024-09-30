@@ -9,7 +9,7 @@ export default function handleKeypress(ctx) {
           x: cursorOffset.x - 1,
         },
       }
-    } else if (key.rightArrow && cursorOffset.x < ctx.unformattedValue.length) {
+    } else if (key.rightArrow && cursorOffset.x < ctx.value.length) {
       return {
         ...ctx,
         cursorOffset: {

@@ -16,7 +16,7 @@ const FUNCTION_KEYS = [
 const NEWLINE_CHARACTERS = ["\n", "\r", "\r\n"]
 
 export default function handleInsertions(ctx) {
-  const { cursorOffset, focus, input, key, multiline, unformattedValue } = ctx
+  const { cursorOffset, focus, input, key, multiline, value } = ctx
 
   if (!focus) return ctx
   if (key.return && !multiline) return ctx
@@ -30,6 +30,6 @@ export default function handleInsertions(ctx) {
       ...cursorOffset,
       x: cursorOffset.x + input.length,
     },
-    unformattedValue: unformattedValue.slice(0, cursorOffset.x) + content + unformattedValue.slice(cursorOffset.x),
+    value: value.slice(0, cursorOffset.x) + content + value.slice(cursorOffset.x),
   }
 }
