@@ -14,7 +14,7 @@ import {
 } from "./actions/index.js"
 
 export default function useController(props) {
-  const { disabled, focus, multiline, onChange, syntax, syntaxTheme, value, width, ...inkProps } = props
+  const { disabled, focus, multiline, onChange, scrollHeight, syntax, syntaxTheme, value, width, ...inkProps } = props
 
   const cursorOffset = useRef({ x: 0 })
   const [formattedValue, setFormattedValue] = useState(value)
@@ -73,5 +73,7 @@ export default function useController(props) {
   return {
     formattedValue,
     inkProps,
+    isFocused: focus,
+    scrollHeight,
   }
 }

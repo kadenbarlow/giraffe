@@ -1,9 +1,10 @@
 import { Box, useFocus } from "ink"
-import React from "react"
+import React, { useRef } from "react"
 import Tabs from "#components/tabs/index.js"
 import TextInput from "#components/text-input/index.js"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
 import useConfig from "#hooks/use-config.js"
+import useScreenSize from "#hooks/use-screen-size.js"
 
 const TABS = {
   REQUEST: {
@@ -18,6 +19,7 @@ export default function LeftPanel({ ...props }) {
   const query = useRequestStore((state) => state.query)
   const setQuery = useRequestStore((state) => state.setQuery)
   const jumpModeEnabled = useRequestStore((state) => state.jumpModeEnabled)
+  const { height } = useScreenSize()
 
   return (
     <Box
@@ -36,6 +38,7 @@ export default function LeftPanel({ ...props }) {
           focus={isFocused}
           multiline={true}
           onChange={setQuery}
+          scrollHeight={Math.floor(height * 0.4) + 1}
           syntax="gql"
           syntaxTheme={theme}
           value={query}
