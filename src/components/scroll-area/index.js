@@ -18,6 +18,7 @@ export default function ScrollArea({ children, focus, height, ...props }) {
 
   useInput(
     (input, key) => {
+      if (innerHeight < height) return
       if (key.downArrow || (NEWLINE_CHARACTERS.includes(input) && innerHeight > height)) {
         setScrollTop((prev) => Math.min(innerHeight - height, prev + 1))
       }

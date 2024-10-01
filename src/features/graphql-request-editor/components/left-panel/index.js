@@ -1,5 +1,5 @@
 import { Box, useFocus } from "ink"
-import React, { useRef } from "react"
+import React from "react"
 import Tabs from "#components/tabs/index.js"
 import TextInput from "#components/text-input/index.js"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
