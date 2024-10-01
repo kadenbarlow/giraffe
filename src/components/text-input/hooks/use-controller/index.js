@@ -6,6 +6,7 @@ import {
   applySyntaxHighlighting,
   applyWidth,
   handleArrowKeys,
+  handleCopy,
   handleDeletions,
   handleInsertions,
   updateCursorOffset,
@@ -47,6 +48,13 @@ export default function useController(props) {
         width,
       }),
     { isActive: focus && !disabled },
+  )
+
+  useInput(
+    (input, key) => {
+      handleCopy({ input, key, value })
+    },
+    { isActive: focus },
   )
 
   useEffect(() => {

@@ -10,6 +10,7 @@ export default function KeyboardShortcuts() {
       <Text> ^q quit </Text>
       <Text> ^r request </Text>
       <Text> ^s save </Text>
+      <Text> ^y copy </Text>
     </Box>
   )
 }

@@ -23,7 +23,7 @@ const TABS = {
 }
 
 export default function RightPanel({ ...props }) {
-  const { isFocused } = useFocus()
+  const { isFocused } = useFocus({ id: "right-panel" })
   const { theme } = useConfig()
   const [activeTab, setActiveTab] = useState(TABS.RESPONSE)
   const jumpModeEnabled = useRequestStore((state) => state.jumpModeEnabled)
