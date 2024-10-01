@@ -5,6 +5,7 @@ import TextInput from "#components/text-input/index.js"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
 import useConfig from "#hooks/use-config.js"
 import useScreenSize from "#hooks/use-screen-size.js"
+import pSBC from "#lib/pSBC.js"
 
 const TABS = {
   REQUEST: {
@@ -23,8 +24,8 @@ export default function LeftPanel({ ...props }) {
 
   return (
     <Box
-      borderColor={isFocused ? theme.accent : "white"}
-      borderStyle="single"
+      borderColor={isFocused ? theme.boxBorder : pSBC(-0.7, theme.boxBorder)}
+      borderStyle={isFocused ? "bold" : "round"}
       flexDirection="column"
       height="100%"
       paddingX={1}

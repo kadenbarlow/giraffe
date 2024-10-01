@@ -9,8 +9,15 @@ export default function useConfig() {
       primary: "#5E81AC",
       secondary: "#8FBCBB",
       success: "#A6E3A1",
-      surface: "#0F111A",
       warning: "#FAB387",
+
+      boxBorder: "#FAB387",
+      keyboardShortcut: "#FAB387",
+      keyboardShortcutText: "#FFFFFF",
+      tab: "#FFFFFF",
+      tabKey: "#FAB387",
+      urlLabel: "#FFFFFF",
+      urlInputBackground: "#1d2133",
 
       // syntax highlighting colors
       attribute: "#5E81AC",

@@ -18,9 +18,11 @@ export default function Header(props) {
   return (
     <Box height={1} {...props} width="100%">
       <Box paddingLeft={1} width="100%">
-        <Text>{jumpModeEnabled ? chalk.inverse("U") : "G"}raphql Endpoint: </Text>
+        <Text color={theme.urlLabel}>
+          {jumpModeEnabled ? chalk.inverse(chalk.hex(theme.tabKey)("U")) : "G"}raphql Endpoint:{" "}
+        </Text>
         <TextInput
-          backgroundColor={pSBC(0.03, theme.background)}
+          backgroundColor={isFocused ? pSBC(0.01, theme.background) : null}
           color="white"
           disabled={jumpModeEnabled}
           focus={isFocused}
@@ -33,7 +35,7 @@ export default function Header(props) {
         <Text bold={true} color={theme.accent}>
           Giraffe
         </Text>
-        <Text color={theme.accent}> 1.2.1</Text>
+        <Text color={theme.accent}> 0.0.0</Text>
       </Box>
     </Box>
   )

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react"
 import Tabs from "#components/tabs/index.js"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
 import useConfig from "#hooks/use-config.js"
+import pSBC from "#lib/pSBC.js"
 import HeadersEditor from "./components/headers-editor/index.js"
 import VariablesEditor from "./components/variables-editor/index.js"
 
@@ -40,8 +41,8 @@ export default function BottomPanel({ ...props }) {
 
   return (
     <Box
-      borderColor={isFocused ? theme.accent : "white"}
-      borderStyle="single"
+      borderColor={isFocused ? theme.boxBorder : pSBC(-0.7, theme.boxBorder)}
+      borderStyle={isFocused ? "bold" : "round"}
       flexDirection="column"
       width="100%"
       {...props}
