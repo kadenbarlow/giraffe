@@ -5,6 +5,7 @@ import handleArrowKeys from "./handle-arrow-keys.js"
 import handleCopy from "./handle-copy.js"
 import handleDeletions from "./handle-deletions.js"
 import handleInsertions from "./handle-insertions.js"
+import handleOpenInEditor from "./handle-open-in-editor.js"
 import updateCursorOffset from "./update-cursor-offset.js"
 import updateFormattedValue from "./update-formatted-value.js"
 import updateParent from "./update-parent.js"
@@ -18,6 +19,7 @@ export {
   handleCopy,
   handleDeletions,
   handleInsertions,
+  handleOpenInEditor,
   updateCursorOffset,
   updateFormattedValue,
   updateParent,

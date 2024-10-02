@@ -27,6 +27,9 @@ export default function KeyboardShortcuts() {
 
       <Text color={theme.keyboardShortcut}> ^y </Text>
       <Text color={theme.keyboardShortcutText}>Copy </Text>
+
+      <Text color={theme.keyboardShortcut}> ^b </Text>
+      <Text color={theme.keyboardShortcutText}>Open in Editor </Text>
     </Box>
   )
 }

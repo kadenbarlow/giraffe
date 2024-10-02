@@ -9,6 +9,7 @@ import {
   handleCopy,
   handleDeletions,
   handleInsertions,
+  handleOpenInEditor,
   updateCursorOffset,
   updateFormattedValue,
   updateParent,
@@ -22,10 +23,11 @@ export default function useController(props) {
 
   useInput(
     (input, key) =>
-      pipe.sync(
+      pipe.async(
         handleDeletions,
         handleInsertions,
         handleArrowKeys,
+        handleOpenInEditor,
         updateCursorOffset,
         applyCursor,
         applyWidth,
