@@ -3,9 +3,9 @@ import React from "react"
 import Tabs from "#components/tabs/index.js"
 import TextInput from "#components/text-input/index.js"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
-import useConfig from "#hooks/use-config.js"
 import useScreenSize from "#hooks/use-screen-size.js"
 import pSBC from "#lib/pSBC.js"
+import useConfig from "#stores/use-config/index.js"
 
 const TABS = {
   REQUEST: {
@@ -16,7 +16,7 @@ const TABS = {
 
 export default function LeftPanel({ ...props }) {
   const { isFocused } = useFocus({ id: "left-panel" })
-  const { theme } = useConfig()
+  const theme = useConfig((config) => config.theme)
   const query = useRequestStore((state) => state.query)
   const setQuery = useRequestStore((state) => state.setQuery)
   const jumpModeEnabled = useRequestStore((state) => state.jumpModeEnabled)

@@ -3,12 +3,12 @@ import { Box, Text, useFocus } from "ink"
 import React from "react"
 import TextInput from "#components/text-input/index.js"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
-import useConfig from "#hooks/use-config.js"
 import useScreenSize from "#hooks/use-screen-size.js"
 import pSBC from "#lib/pSBC.js"
+import useConfig from "#stores/use-config/index.js"
 
 export default function Header(props) {
-  const { theme } = useConfig()
+  const theme = useConfig((config) => config.theme)
   const { width } = useScreenSize()
   const { isFocused } = useFocus({ autoFocus: true, id: "header" })
   const url = useRequestStore((state) => state.url)

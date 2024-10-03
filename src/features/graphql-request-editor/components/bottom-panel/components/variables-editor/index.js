@@ -2,11 +2,11 @@ import { Box } from "ink"
 import React from "react"
 import TextInput from "#components/text-input/index.js"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
-import useConfig from "#hooks/use-config.js"
 import useScreenSize from "#hooks/use-screen-size.js"
+import useConfig from "#stores/use-config/index.js"
 
 export default function VariablesEditor({ focus, ...props }) {
-  const { theme } = useConfig()
+  const theme = useConfig((config) => config.theme)
   const variables = useRequestStore((state) => state.variables)
   const setVariables = useRequestStore((state) => state.setVariables)
   const jumpModeEnabled = useRequestStore((state) => state.jumpModeEnabled)

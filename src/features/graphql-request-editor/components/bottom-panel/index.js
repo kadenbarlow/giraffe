@@ -2,8 +2,8 @@ import { Box, useFocus } from "ink"
 import React, { useEffect, useState } from "react"
 import Tabs from "#components/tabs/index.js"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
-import useConfig from "#hooks/use-config.js"
 import pSBC from "#lib/pSBC.js"
+import useConfig from "#stores/use-config/index.js"
 import HeadersEditor from "./components/headers-editor/index.js"
 import VariablesEditor from "./components/variables-editor/index.js"
 
@@ -20,7 +20,7 @@ const TABS = {
 
 export default function BottomPanel({ ...props }) {
   const { isFocused } = useFocus({ id: "bottom-panel" })
-  const { theme } = useConfig()
+  const theme = useConfig((config) => config.theme)
   const [activeTab, setActiveTab] = useState(TABS.VARIABLES)
   const jumpModeEnabled = useRequestStore((state) => state.jumpModeEnabled)
   const jumpKey = useRequestStore((state) => state.jumpKey)

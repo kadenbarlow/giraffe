@@ -2,8 +2,8 @@ import { Box, useFocus } from "ink"
 import React, { useEffect, useState } from "react"
 import Tabs from "#components/tabs/index.js"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
-import useConfig from "#hooks/use-config.js"
 import pSBC from "#lib/pSBC.js"
+import useConfig from "#stores/use-config/index.js"
 import Collections from "./components/collections/index.js"
 import Response from "./components/response/index.js"
 import Schema from "./components/schema/index.js"
@@ -25,7 +25,7 @@ const TABS = {
 
 export default function RightPanel({ ...props }) {
   const { isFocused } = useFocus({ id: "right-panel" })
-  const { theme } = useConfig()
+  const theme = useConfig((config) => config.theme)
   const [activeTab, setActiveTab] = useState(TABS.RESPONSE)
   const jumpModeEnabled = useRequestStore((state) => state.jumpModeEnabled)
   const jumpKey = useRequestStore((state) => state.jumpKey)

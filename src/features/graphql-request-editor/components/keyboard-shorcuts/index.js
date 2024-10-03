@@ -1,9 +1,9 @@
 import { Box, Text } from "ink"
 import React from "react"
-import useConfig from "#hooks/use-config.js"
+import useConfig from "#stores/use-config/index.js"
 
 export default function KeyboardShortcuts() {
-  const { theme } = useConfig()
+  const theme = useConfig((config) => config.theme)
 
   return (
     <Box flexDirection="row">

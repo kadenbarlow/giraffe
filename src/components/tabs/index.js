@@ -1,11 +1,11 @@
 import chalk from "chalk"
 import { Box, Text } from "ink"
 import React from "react"
-import useConfig from "#hooks/use-config.js"
 import pSBC from "#lib/pSBC.js"
+import useConfig from "#stores/use-config/index.js"
 
 export default function Tabs({ jumpModeEnabled, tabs, value: activeTab, ...props }) {
-  const { theme } = useConfig()
+  const theme = useConfig((config) => config.theme)
 
   return (
     <Box flexDirection="column" width="100%">
