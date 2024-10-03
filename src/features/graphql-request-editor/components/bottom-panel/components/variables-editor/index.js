@@ -19,7 +19,7 @@ export default function VariablesEditor({ focus, ...props }) {
         focus={focus}
         multiline={true}
         onChange={setVariables}
-        scrollHeight={Math.floor(height * 0.2) + 2}
+        scrollHeight={Math.floor(height * 0.4) - 6}
         syntax="jsonc"
         syntaxTheme={theme}
         value={variables}

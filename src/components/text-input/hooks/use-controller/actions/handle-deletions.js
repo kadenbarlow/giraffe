@@ -1,7 +1,7 @@
 export default function handleInsertions(ctx) {
-  const { cursorOffset, focus, key, value } = ctx
+  const { cursorOffset, disabled, focus, key, value } = ctx
 
-  if (!focus) return ctx
+  if (!focus || disabled) return ctx
   if (!key.backspace && !key.delete) return ctx
 
   return {

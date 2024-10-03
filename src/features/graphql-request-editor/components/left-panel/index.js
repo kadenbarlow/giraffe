@@ -39,7 +39,7 @@ export default function LeftPanel({ ...props }) {
           focus={isFocused}
           multiline={true}
           onChange={setQuery}
-          scrollHeight={Math.floor(height * 0.4) + 1}
+          scrollHeight={Math.floor(height * 0.6) - 6}
           syntax="gql"
           syntaxTheme={theme}
           value={query}

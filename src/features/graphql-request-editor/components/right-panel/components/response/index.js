@@ -17,7 +17,7 @@ export default function Response({ focus, ...props }) {
         focus={focus}
         multiline={true}
         onChange={() => null}
-        scrollHeight={Math.floor(height * 0.8)}
+        scrollHeight={Math.floor(height - 8)}
         syntax="jsonc"
         syntaxTheme={theme}
         value={response}

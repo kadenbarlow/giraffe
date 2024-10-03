@@ -16,9 +16,9 @@ const FUNCTION_KEYS = [
 const NEWLINE_CHARACTERS = ["\n", "\r", "\r\n"]
 
 export default function handleInsertions(ctx) {
-  const { cursorOffset, focus, input, key, multiline, value } = ctx
+  const { cursorOffset, disabled, focus, input, key, multiline, value } = ctx
 
-  if (!focus) return ctx
+  if (!focus || disabled) return ctx
   if (key.return && !multiline) return ctx
   if (FUNCTION_KEYS.some((pressed) => key[pressed])) return ctx
 

@@ -37,6 +37,7 @@ export default function useController(props) {
       )({
         cursorOffset: cursorOffset.current,
         cursorOffsetRef: cursorOffset,
+        disabled,
         focus,
         formattedValue: null,
         input,
@@ -49,7 +50,7 @@ export default function useController(props) {
         value,
         width,
       }),
-    { isActive: focus && !disabled },
+    { isActive: focus },
   )
 
   useInput(
