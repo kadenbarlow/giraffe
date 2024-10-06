@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "babel --out-dir=dist src",
-    "dev": "babel --out-dir=dist --watch src",
+    "dev": "npm run build;chmod +x ./dist/cli/index.js; node --inspect ./dist/cli/index.js",
     "test": "prettier --check . && xo && ava"
   },
   "files": [

@@ -1,6 +1,9 @@
 /* eslint-disable perfectionist/sort-objects */
 
 const DEFAULT_SETTINGS = {
+  collections: {
+    folderPath: `${process.env.HOME}/.config/giraffe/collections`,
+  },
   theme: {
     // User interface colors
     accent: "#FAB387",
