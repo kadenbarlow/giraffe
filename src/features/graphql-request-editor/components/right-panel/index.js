@@ -30,25 +30,28 @@ export default function RightPanel({ ...props }) {
   const jumpModeEnabled = useRequestStore((state) => state.jumpModeEnabled)
   const jumpKey = useRequestStore((state) => state.jumpKey)
   const setJumpKey = useRequestStore((state) => state.setJumpKey)
+  const [childElementFocused, setChildElementFocused] = useState(false)
 
   useEffect(
     function selectTabOnJump() {
       function setTab(tab) {
         setActiveTab(tab)
         setJumpKey(null)
+        setChildElementFocused(true)
       }
 
       if (jumpKey === "r") setTab(TABS.RESPONSE)
-      if (jumpKey === "s") setTab(TABS.SCHEMA)
-      if (jumpKey === "c") setTab(TABS.STORED_COLLECTIONS)
+      else if (jumpKey === "s") setTab(TABS.SCHEMA)
+      else if (jumpKey === "c") setTab(TABS.STORED_COLLECTIONS)
+      else if (jumpKey) setChildElementFocused(false)
     },
     [jumpKey, setJumpKey],
   )
 
   return (
     <Box
-      borderColor={isFocused ? theme.boxBorder : pSBC(-0.7, theme.boxBorder)}
-      borderStyle={isFocused ? "bold" : "round"}
+      borderColor={childElementFocused ? theme.boxBorder : pSBC(-0.7, theme.boxBorder)}
+      borderStyle={childElementFocused ? "bold" : "round"}
       flexDirection="column"
       height="100%"
       paddingX={1}

@@ -11,7 +11,10 @@ export default function serializeParsedFiles(ctx) {
         acc[folderName] ??= {}
         return acc[folderName]
       }, collections) || collections
-    collection[pathParts[pathParts.length - 1].replace(".json", "")] = parsedFile
+    collection[pathParts[pathParts.length - 1].replace(".json", "")] = {
+      ...parsedFile,
+      label: `${parsedFile.name} - ${parsedFile.description}`,
+    }
 
     return collections
   }, {})

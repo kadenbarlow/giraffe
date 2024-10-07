@@ -10,6 +10,7 @@ const useRequestStore = create((set) => ({
   setJumpKey: (jumpKey) => set({ jumpKey }),
   setJumpModeEnabled: (jumpModeEnabled) => set({ jumpModeEnabled }),
   setQuery: (query) => set({ query }),
+  setRequest: (request) => set({ ...request }),
   setResponse: (response) => set({ response }),
   setUrl: (url) => set({ url }),
   setVariables: (variables) => set({ variables }),

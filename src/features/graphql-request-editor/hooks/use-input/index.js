@@ -36,6 +36,8 @@ export default () => {
     } else if (key.ctrl && input === "p") {
       formatEditorContent()
     } else if (key.ctrl && input === "r") {
+      setJumpKey("r")
+      focus("right-panel")
       sendRequest()
     }
   })

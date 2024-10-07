@@ -19,7 +19,6 @@ async function toArray(iter = empty()) {
 
 export default async function getCollectionFiles(ctx) {
   const { collectionsFolder } = ctx
-  debugger
   const filePaths = (await toArray(ls(collectionsFolder))).filter((filePath) => filePath.endsWith(".json"))
 
   return {
