@@ -5,12 +5,17 @@ import useRequestStore from "#features/graphql-request-editor/stores/use-request
 import pSBC from "#lib/pSBC.js"
 import useConfig from "#stores/use-config/index.js"
 import HeadersEditor from "./components/headers-editor/index.js"
+import InfoEditor from "./components/info-editor/index.js"
 import VariablesEditor from "./components/variables-editor/index.js"
 
 const TABS = {
   HEADERS: {
     jumpKey: "H",
     value: "Headers",
+  },
+  INFO: {
+    jumpKey: "I",
+    value: "Info",
   },
   VARIABLES: {
     jumpKey: "V",
@@ -34,6 +39,7 @@ export default function BottomPanel({ ...props }) {
       }
 
       if (jumpKey === "v") setTab(TABS.VARIABLES)
+      if (jumpKey === "i") setTab(TABS.INFO)
       if (jumpKey === "h") setTab(TABS.HEADERS)
     },
     [jumpKey, setJumpKey],
@@ -55,6 +61,7 @@ export default function BottomPanel({ ...props }) {
         value={activeTab}
       />
       {activeTab.value === TABS.VARIABLES.value && <VariablesEditor focus={isFocused} />}
+      {activeTab.value === TABS.INFO.value && <InfoEditor focus={isFocused} />}
       {activeTab.value === TABS.HEADERS.value && <HeadersEditor focus={isFocused} />}
     </Box>
   )

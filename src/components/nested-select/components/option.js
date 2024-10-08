@@ -1,22 +1,20 @@
 import chalk from "chalk"
-import { Box, Text, useFocus, useInput } from "ink"
+import { Box, Text, useInput } from "ink"
 import React from "react"
 
-export default function Option({ label, onSelect, value, ...props }) {
-  const { isFocused } = useFocus()
-
+export default function Option({ focus, label, onSelect, value, ...props }) {
   useInput(
     (_input, key) => {
       if (key.return) {
         onSelect(value)
       }
     },
-    { isActive: isFocused },
+    { isActive: focus },
   )
 
   return (
     <Box {...props}>
-      <Text>{isFocused ? chalk.inverse(label) : label}</Text>
+      <Text>{focus ? chalk.inverse(label) : label}</Text>
     </Box>
   )
 }

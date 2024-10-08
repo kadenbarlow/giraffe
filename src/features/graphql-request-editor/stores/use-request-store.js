@@ -1,9 +1,12 @@
 import { create } from "zustand"
 
 const useRequestStore = create((set) => ({
+  description: "",
+  filePath: "",
   headers: "{}",
   jumpKey: null,
   jumpModeEnabled: false,
+  name: "",
   query: "",
   response: "",
   setHeaders: (headers) => set({ headers }),

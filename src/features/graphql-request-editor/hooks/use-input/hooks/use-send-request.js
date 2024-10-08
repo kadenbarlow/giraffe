@@ -1,6 +1,6 @@
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
 
-export default function useController() {
+export default function useSendRequest() {
   const setResponse = useRequestStore((state) => state.setResponse)
 
   const sendRequest = async () => {

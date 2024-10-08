@@ -1,3 +1,5 @@
+import crypto from "crypto"
+
 export default function serializeParsedFiles(ctx) {
   const { collectionsFolder, parsedFilesByPath } = ctx
 
@@ -13,6 +15,8 @@ export default function serializeParsedFiles(ctx) {
       }, collections) || collections
     collection[pathParts[pathParts.length - 1].replace(".json", "")] = {
       ...parsedFile,
+      filePath: relativePath,
+      key: crypto.randomUUID(),
       label: `${parsedFile.name} - ${parsedFile.description}`,
     }
 

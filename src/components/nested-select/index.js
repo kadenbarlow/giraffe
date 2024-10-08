@@ -1,24 +1,25 @@
 import { Box, Text } from "ink"
-import React, { useState } from "react"
+import React from "react"
 import ScrollArea from "#components/scroll-area/index.js"
 import TextInput from "#components/text-input/index.js"
 import pSBC from "#lib/pSBC.js"
 import useConfig from "#stores/use-config/index.js"
 import Option from "./components/option.js"
+import useController from "./hooks/use-controller.js"
 
-export default function NestedSelect({ disabled, focus, onSelect, options, ...props }) {
+export default function NestedSelect(props) {
   const theme = useConfig((config) => config.theme)
-  const [search, setSearch] = useState("")
+  const { disabled, focus, onSelect, options, search, selectedOption, setSearch } = useController(props)
 
-  const renderSelection = ([key, value]) => {
-    if (value.name) {
-      return <Option label={value.label} onSelect={onSelect} value={value} />
+  const renderOptions = ([key, value]) => {
+    if (value.key) {
+      return <Option focus={selectedOption?.key === value.key} label={value.label} onSelect={onSelect} value={value} />
     } else {
       return (
         <Box flexDirection="column">
           <Text>{key}</Text>
           <Box flexDirection="column" paddingBottom={1} paddingX={2}>
-            {Object.entries(value).map(renderSelection)}
+            {Object.entries(value).map(renderOptions)}
           </Box>
         </Box>
       )
@@ -30,16 +31,16 @@ export default function NestedSelect({ disabled, focus, onSelect, options, ...pr
       <Box flexDirection="row" paddingBottom={1}>
         <Text>Search: </Text>
         <TextInput
-          backgroundColor={focus ? pSBC(0.01, theme.background) : null}
+          backgroundColor={focus && !selectedOption ? pSBC(0.01, theme.background) : null}
           disabled={disabled}
-          focus={focus}
+          focus={focus && !selectedOption}
           multiline={false}
           onChange={setSearch}
           value={search}
           width={50}
         />
       </Box>
-      <ScrollArea>{Object.entries(options).map(renderSelection)}</ScrollArea>
+      <ScrollArea>{Object.entries(options).map(renderOptions)}</ScrollArea>
     </Box>
   )
 }
