@@ -1,12 +1,13 @@
 import { useApp, useFocusManager, useInput } from "ink"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
-import { useFormatting, useNewRequest, useSendRequest } from "./hooks/index.js"
+import { useFormatting, useNewRequest, useSaveRequest, useSendRequest } from "./hooks/index.js"
 
 export default () => {
   const app = useApp()
   const { focus } = useFocusManager()
   const { formatEditorContent } = useFormatting()
   const { newRequest } = useNewRequest()
+  const { saveRequest } = useSaveRequest()
   const { sendRequest } = useSendRequest()
   const jumpModeEnabled = useRequestStore((state) => state.jumpModeEnabled)
   const setJumpModeEnabled = useRequestStore((state) => state.setJumpModeEnabled)
@@ -41,6 +42,8 @@ export default () => {
       setJumpKey("r")
       focus("right-panel")
       sendRequest()
+    } else if (key.ctrl && input === "s") {
+      saveRequest()
     }
   })
 }

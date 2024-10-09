@@ -16,10 +16,13 @@ export default function Collections({ focus, ...props }) {
         focus={focus}
         onSelect={(request) =>
           setRequest({
-            description: request.description,
             filePath: request.filePath,
             headers: JSON.stringify(request.headers, null, 2),
-            name: request.name,
+            info: JSON.stringify(
+              { description: request.description, filePath: request.filePath, name: request.name },
+              null,
+              2,
+            ),
             query: request.query,
             url: request.url,
             variables: JSON.stringify(request.variables, null, 2),
