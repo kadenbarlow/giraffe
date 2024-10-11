@@ -17,7 +17,7 @@ export default function serializeParsedFiles(ctx) {
       ...parsedFile,
       filePath: relativePath,
       key: crypto.randomUUID(),
-      label: `${parsedFile.name} - ${parsedFile.description}`,
+      label: `${parsedFile.name}${parsedFile.description ? " - " : ""}${parsedFile.description}`,
     }
 
     return collections

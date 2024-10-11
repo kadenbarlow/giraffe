@@ -30,6 +30,9 @@ export default function KeyboardShortcuts() {
 
       <Text color={theme.keyboardShortcut}> ^b </Text>
       <Text color={theme.keyboardShortcutText}>Open in Editor </Text>
+
+      <Text color={theme.keyboardShortcut}> ^x </Text>
+      <Text color={theme.keyboardShortcutText}>Delete </Text>
     </Box>
   )
 }

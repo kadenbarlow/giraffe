@@ -36,8 +36,9 @@ export default function useSaveRequest() {
     await fs.writeFile(currentPath, fileData)
     if (filePath && currentPath !== previousPath) {
       await fs.unlink(previousPath)
-      setRequest({ filePath: parsedInfo.filePath })
     }
+
+    setRequest({ filePath: parsedInfo.filePath })
   }
 
   return { saveRequest }

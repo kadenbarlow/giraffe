@@ -5,6 +5,7 @@ export default function useNewRequest() {
 
   const newRequest = async () => {
     setRequest({
+      filePath: "",
       headers: "{}",
       info: JSON.stringify({ description: "", filePath: "new-request.json", name: "" }, null, 2),
       query: "",

@@ -1,11 +1,12 @@
 import { useApp, useFocusManager, useInput } from "ink"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
-import { useFormatting, useNewRequest, useSaveRequest, useSendRequest } from "./hooks/index.js"
+import { useDeleteRequest, useFormatting, useNewRequest, useSaveRequest, useSendRequest } from "./hooks/index.js"
 
 export default () => {
   const app = useApp()
   const { focus } = useFocusManager()
   const { formatEditorContent } = useFormatting()
+  const { deleteRequest } = useDeleteRequest()
   const { newRequest } = useNewRequest()
   const { saveRequest } = useSaveRequest()
   const { sendRequest } = useSendRequest()
@@ -30,7 +31,7 @@ export default () => {
   useInput((input, key) => {
     if (jumpModeEnabled) {
       jumpTo(input)
-    } else if (key.ctrl && input === "q") {
+    } else if (key.ctrl && ["c", "d", "q"].includes(input)) {
       app.exit()
     } else if (key.ctrl && input === "n") {
       newRequest()
@@ -44,6 +45,8 @@ export default () => {
       sendRequest()
     } else if (key.ctrl && input === "s") {
       saveRequest()
+    } else if (key.ctrl && input === "x") {
+      deleteRequest()
     }
   })
 }
