@@ -1,4 +1,6 @@
+import chalk from "chalk"
 import { create } from "zustand"
+import useConfig from "#stores/use-config/index.js"
 
 const useRequestStore = create((set) => ({
   filePath: "",
@@ -15,8 +17,19 @@ const useRequestStore = create((set) => ({
   setQuery: (query) => set({ query }),
   setRequest: (request) => set({ ...request }),
   setResponse: (response) => set({ response }),
+  setToast: ({ message, timeout, type }) => {
+    const { theme } = useConfig.getState()
+    set({ toast: chalk.hex(theme[type])(message) })
+
+    if (timeout) {
+      setTimeout(() => {
+        set({ toast: "" })
+      }, timeout)
+    }
+  },
   setUrl: (url) => set({ url }),
   setVariables: (variables) => set({ variables }),
+  toast: "",
   url: "",
   variables: "{}",
 }))

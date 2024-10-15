@@ -2,10 +2,12 @@ import useRequestStore from "#features/graphql-request-editor/stores/use-request
 
 export default function useSendRequest() {
   const setResponse = useRequestStore((state) => state.setResponse)
+  const setToast = useRequestStore((state) => state.setToast)
 
   const sendRequest = async () => {
     const { headers, query, url, variables } = useRequestStore.getState()
     try {
+      setToast({ message: "Requesting...", type: "primary" })
       const response = await fetch(url, {
         body: JSON.stringify({
           query,
