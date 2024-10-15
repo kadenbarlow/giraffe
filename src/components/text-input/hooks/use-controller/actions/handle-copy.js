@@ -2,7 +2,9 @@ import clipboard from "clipboardy"
 
 export default function handleCopy(ctx) {
   const { input, key, value } = ctx
-  if (key.ctrl && input === "y") {
+
+  const meta = key.ctrl || key.meta
+  if (meta && input === "y") {
     clipboard.write(value)
   }
   return ctx

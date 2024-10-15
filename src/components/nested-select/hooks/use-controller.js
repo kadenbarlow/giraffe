@@ -8,14 +8,15 @@ export default function useController({ disabled, focus, onSelect, options, ...p
   const flattenedOptions = useMemo(() => {
     function getKeys(option) {
       if (option.key) {
+        if (search && !option.label.toLowerCase().includes(search.toLowerCase())) return null
         return option
       } else {
         return Object.values(option).flatMap(getKeys)
       }
     }
 
-    return [null, ...Object.values(options).flatMap(getKeys)]
-  }, [options])
+    return [null, ...Object.values(options).flatMap(getKeys).filter(Boolean)]
+  }, [options, search])
 
   useInput(
     (_input, key) => {

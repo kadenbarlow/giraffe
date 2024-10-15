@@ -39,7 +39,8 @@ export default function useCollections() {
   })
 
   useInput((input, key) => {
-    if (key.ctrl && ["c", "d", "q"].includes(input)) {
+    const meta = key.ctrl || key.meta
+    if (meta && ["c", "d", "q"].includes(input)) {
       abortController.current.abort()
     }
   })

@@ -29,23 +29,25 @@ export default () => {
   }
 
   useInput((input, key) => {
+    const meta = key.ctrl || key.meta
     if (jumpModeEnabled) {
       jumpTo(input)
-    } else if (key.ctrl && ["c", "d", "q"].includes(input)) {
+    } else if (meta && ["c", "d", "q"].includes(input)) {
       app.exit()
-    } else if (key.ctrl && input === "n") {
-      newRequest()
-    } else if (key.ctrl && input === "o") {
+    } else if ((input === "\n" && !key.return) || (meta && input === "j")) {
+      // ^j is converted to enter key by terminals
       setJumpModeEnabled(true)
-    } else if (key.ctrl && input === "p") {
+    } else if (meta && input === "n") {
+      newRequest()
+    } else if (meta && input === "p") {
       formatEditorContent()
-    } else if (key.ctrl && input === "r") {
+    } else if (meta && input === "r") {
       setJumpKey("r")
       focus("right-panel")
       sendRequest()
-    } else if (key.ctrl && input === "s") {
+    } else if (meta && input === "s") {
       saveRequest()
-    } else if (key.ctrl && input === "x") {
+    } else if (meta && input === "x") {
       deleteRequest()
     }
   })

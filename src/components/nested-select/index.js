@@ -13,16 +13,20 @@ export default function NestedSelect(props) {
 
   const renderOptions = ([key, value]) => {
     if (value.key) {
+      if (search && !value.label.toLowerCase().includes(search.toLowerCase())) return null
       return <Option focus={selectedOption?.key === value.key} label={value.label} onSelect={onSelect} value={value} />
     } else {
-      return (
-        <Box flexDirection="column">
-          <Text>{key}</Text>
-          <Box flexDirection="column" paddingBottom={1} paddingX={2}>
-            {Object.entries(value).map(renderOptions)}
+      const options = Object.entries(value).map(renderOptions).filter(Boolean)
+      if (options.length) {
+        return (
+          <Box flexDirection="column">
+            <Text>{key}</Text>
+            <Box flexDirection="column" paddingBottom={1} paddingX={2}>
+              {options}
+            </Box>
           </Box>
-        </Box>
-      )
+        )
+      } else return <React.Fragment />
     }
   }
 

@@ -7,11 +7,14 @@ export default function KeyboardShortcuts() {
 
   return (
     <Box flexDirection="row">
+      <Text color={theme.keyboardShortcut}> ^j </Text>
+      <Text color={theme.keyboardShortcutText}>Jump </Text>
+
       <Text color={theme.keyboardShortcut}> ^n </Text>
       <Text color={theme.keyboardShortcutText}>New </Text>
 
       <Text color={theme.keyboardShortcut}> ^o </Text>
-      <Text color={theme.keyboardShortcutText}>Jump </Text>
+      <Text color={theme.keyboardShortcutText}>Open in editor </Text>
 
       <Text color={theme.keyboardShortcut}> ^p </Text>
       <Text color={theme.keyboardShortcutText}>Format </Text>
@@ -25,14 +28,11 @@ export default function KeyboardShortcuts() {
       <Text color={theme.keyboardShortcut}> ^s </Text>
       <Text color={theme.keyboardShortcutText}>Save </Text>
 
-      <Text color={theme.keyboardShortcut}> ^y </Text>
-      <Text color={theme.keyboardShortcutText}>Copy </Text>
-
-      <Text color={theme.keyboardShortcut}> ^b </Text>
-      <Text color={theme.keyboardShortcutText}>Open in Editor </Text>
-
       <Text color={theme.keyboardShortcut}> ^x </Text>
       <Text color={theme.keyboardShortcutText}>Delete </Text>
+
+      <Text color={theme.keyboardShortcut}> ^y </Text>
+      <Text color={theme.keyboardShortcutText}>Copy </Text>
     </Box>
   )
 }
