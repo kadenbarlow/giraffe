@@ -9,6 +9,7 @@ const DEFAULT_SETTINGS = {
     accent: "#FAB387",
     background: "#0F111A",
     error: "#F38BA8",
+    info: "#FFFFFF",
     primary: "#5E81AC",
     secondary: "#8FBCBB",
     success: "#A6E3A1",

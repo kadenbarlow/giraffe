@@ -36,6 +36,8 @@ export default function useCollections() {
         throw err
       }
     })()
+
+    return () => abortController.current.abort()
   })
 
   useInput((input, key) => {
