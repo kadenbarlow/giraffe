@@ -43,7 +43,7 @@ export default function useSendRequest() {
           "cache-control": "no-cache",
           "Content-Type": "application/json",
           "User-Agent": "GiraffeClient/0.0.0",
-          ...headers,
+          ...JSON.parse(headers),
         },
         method: "POST",
       })
