@@ -1,15 +1,10 @@
 import { useApp, useFocusManager, useInput } from "ink"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
-import { useDeleteRequest, useFormatting, useNewRequest, useSaveRequest, useSendRequest } from "./hooks/index.js"
+import { deleteRequest, formatRequest, newRequest, saveRequest, sendRequest } from "./actions/index.js"
 
 export default () => {
   const app = useApp()
   const { focus } = useFocusManager()
-  const { formatEditorContent } = useFormatting()
-  const { deleteRequest } = useDeleteRequest()
-  const { newRequest } = useNewRequest()
-  const { saveRequest } = useSaveRequest()
-  const { sendRequest } = useSendRequest()
   const jumpModeEnabled = useRequestStore((state) => state.jumpModeEnabled)
   const setJumpModeEnabled = useRequestStore((state) => state.setJumpModeEnabled)
   const setJumpKey = useRequestStore((state) => state.setJumpKey)
@@ -40,7 +35,7 @@ export default () => {
     } else if (meta && input === "n") {
       newRequest()
     } else if (meta && input === "p") {
-      formatEditorContent()
+      formatRequest()
     } else if (meta && input === "r") {
       setJumpKey("r")
       focus("right-panel")
