@@ -4,5 +4,6 @@ export default function selectOption(option) {
   const setRequest = useRequestStore.getState().setRequest
   setRequest({
     query: option.loc.source.body.slice(option.loc.start, option.loc.end),
+    variables: JSON.stringify(option.variables, null, 2),
   })
 }

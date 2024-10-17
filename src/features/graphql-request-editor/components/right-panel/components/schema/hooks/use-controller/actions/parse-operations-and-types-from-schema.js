@@ -2,7 +2,7 @@ import { parse, print, printSchema } from "graphql"
 import { buildOperationNodeForField } from "@graphql-tools/utils"
 
 export default function parseSchema(ctx) {
-  const { builtClientSchema: schema } = ctx
+  const { schema } = ctx
 
   const operationsDictionary = {
     mutation: { ...(schema.getMutationType()?.getFields() || {}) },

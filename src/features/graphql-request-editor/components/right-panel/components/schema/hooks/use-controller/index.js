@@ -24,9 +24,8 @@ export default function useSchema() {
         displayFinishedToast,
         ({ options }) => setOptions(options),
       )({
-        builtClientSchema: null,
         operations: null,
-        schema: {},
+        schema: null,
         types: null,
         url,
       })

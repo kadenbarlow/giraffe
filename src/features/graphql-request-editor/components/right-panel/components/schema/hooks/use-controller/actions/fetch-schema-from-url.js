@@ -16,6 +16,6 @@ export default async function fetchSchema(ctx) {
   const { data } = await response.json()
   return {
     ...ctx,
-    builtClientSchema: buildClientSchema(data),
+    schema: buildClientSchema(data),
   }
 }
