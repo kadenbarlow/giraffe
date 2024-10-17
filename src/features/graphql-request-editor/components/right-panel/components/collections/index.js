@@ -2,12 +2,14 @@ import { Box } from "ink"
 import React from "react"
 import NestedSelect from "#components/nested-select/index.js"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
+import useScreenSize from "#hooks/use-screen-size.js"
 import useCollections from "./hooks/use-collections/index.js"
 
 export default function Collections({ focus, ...props }) {
   const { collections } = useCollections()
   const jumpModeEnabled = useRequestStore((state) => state.jumpModeEnabled)
   const setRequest = useRequestStore((state) => state.setRequest)
+  const { height } = useScreenSize()
 
   return (
     <Box paddingTop={1} {...props}>
@@ -29,6 +31,7 @@ export default function Collections({ focus, ...props }) {
           })
         }
         options={collections}
+        optionsHeight={Math.floor(height - 10)}
       />
     </Box>
   )

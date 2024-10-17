@@ -1,7 +1,7 @@
 import { useInput } from "ink"
 import { useMemo, useState } from "react"
 
-export default function useController({ disabled, focus, onSelect, options, ...props }) {
+export default function useController({ disabled, focus, onSelect, options, optionsHeight, ...props }) {
   const [search, setSearch] = useState("")
   const [selectedOption, setSelectedOption] = useState(null)
 
@@ -41,6 +41,7 @@ export default function useController({ disabled, focus, onSelect, options, ...p
     onSelect,
     options,
     props,
+    scrollHeight: optionsHeight,
     search,
     selectedOption,
     setSearch,

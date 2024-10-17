@@ -39,7 +39,7 @@ export default async function sendRequest() {
       headers: {
         "cache-control": "no-cache",
         "Content-Type": "application/json",
-        "User-Agent": "GiraffeClient/0.0.0",
+        "User-Agent": "GiraffeClient/0.1.0-alpha",
         ...JSON.parse(headers),
       },
       method: "POST",

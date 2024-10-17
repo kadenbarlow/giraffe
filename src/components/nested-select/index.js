@@ -9,7 +9,7 @@ import useController from "./hooks/use-controller.js"
 
 export default function NestedSelect(props) {
   const theme = useConfig((config) => config.theme)
-  const { disabled, focus, onSelect, options, search, selectedOption, setSearch } = useController(props)
+  const { disabled, focus, onSelect, options, scrollHeight, search, selectedOption, setSearch } = useController(props)
 
   const renderOptions = ([key, value]) => {
     if (value.key) {
@@ -44,7 +44,7 @@ export default function NestedSelect(props) {
           width={50}
         />
       </Box>
-      <ScrollArea>{Object.entries(options).map(renderOptions)}</ScrollArea>
+      <ScrollArea height={scrollHeight}>{Object.entries(options).map(renderOptions)}</ScrollArea>
     </Box>
   )
 }

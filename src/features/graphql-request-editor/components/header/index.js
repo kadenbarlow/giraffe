@@ -31,11 +31,11 @@ export default function Header(props) {
           width={width / 2 - 21}
         />
       </Box>
-      <Box flexDirection="row" width={16}>
+      <Box flexDirection="row" width={22}>
         <Text bold={true} color={theme.accent}>
           Giraffe
         </Text>
-        <Text color={theme.accent}> 0.0.0</Text>
+        <Text color={theme.accent}> 0.1.0-alpha</Text>
       </Box>
     </Box>
   )
