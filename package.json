@@ -2,13 +2,13 @@
   "name": "giraffe",
   "version": "0.1.0-alpha",
   "license": "MIT",
-  "bin": "dist/cli.js",
+  "bin": "dist/cli/index.js",
   "type": "module",
   "engines": {
     "node": ">=16"
   },
   "scripts": {
-    "build": "babel --out-dir=dist src",
+    "build": "rm -rf ./dist && babel --out-dir=dist src",
     "dev": "npm run build;chmod +x ./dist/cli/index.js; node --inspect=9228 ./dist/cli/index.js",
     "start": "npm run build;chmod +x ./dist/cli/index.js; node ./dist/cli/index.js",
     "test": "prettier --check . && xo && ava"
