@@ -36,6 +36,11 @@ export default function useCollections() {
         throw err
       }
     })()
+
+    const controller = abortController.current
+    return () => {
+      controller.abort()
+    }
   })
 
   useInput((input, key) => {

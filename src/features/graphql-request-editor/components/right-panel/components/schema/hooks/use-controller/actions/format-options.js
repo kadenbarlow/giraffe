@@ -1,27 +1,21 @@
 import crypto from "crypto"
 
-function parseVariableDefinitionType(schema, definition, result = {}) {
-  const type = definition.type ?? definition
-  if (type.name && type.name.value && typeof type.name.value === "string") {
-    const typeDefinition = schema._typeMap[type.name.value]
-    if (typeDefinition?._fields) return parseVariableDefinitionType(schema, typeDefinition, {})
-    return typeDefinition?.name
-  } else if (type.ofType) {
-    if (type.ofType) return parseVariableDefinitionType(schema, type.ofType, result)
-    return type.ofType.name
-  } else if (type._fields || (type.name && type.name._fields)) {
-    return Object.entries(type._fields || (type.name && type.name._fields)).reduce(
-      (fieldProperties, [property, field]) => {
-        fieldProperties[property] = parseVariableDefinitionType(schema, field)
-        return fieldProperties
-      },
-      result,
-    )
-  } else if (type.type) {
-    return parseVariableDefinitionType(type, result)
+function parseVariableDefinitionType(definition, result = {}) {
+  if (definition.ofType || definition.type) {
+    return parseVariableDefinitionType(definition.ofType || definition.type, result)
+  } else if (definition._fields) {
+    return Object.entries(definition._fields).reduce((fieldProperties, [property, field]) => {
+      fieldProperties[property] = parseVariableDefinitionType(field)
+      return fieldProperties
+    }, result)
   } else {
-    return type.name || result
+    return definition.name
   }
+}
+
+function parseVariableDefinitionTypeName(definition) {
+  if (definition.type) return parseVariableDefinitionTypeName(definition.type)
+  else return definition.name.value
 }
 
 export default function formatOptions(ctx) {
@@ -34,15 +28,15 @@ export default function formatOptions(ctx) {
         const option = {
           ...definition,
           key: crypto.randomUUID(),
-          label: definition.name.value,
+          label: definition.name.value
+            .replace(/_query$/, "")
+            .replace(/_mutation$/, "")
+            .replace(/_subscription$/, ""),
           variables: definition.variableDefinitions?.reduce((variables, definition) => {
             const property = definition.variable.name.value
-            try {
-              variables[property] = parseVariableDefinitionType(schema, definition.type)
-            } catch (error) {
-              debugger
-              console.log(error)
-            }
+            variables[property] = parseVariableDefinitionType(
+              schema._typeMap[parseVariableDefinitionTypeName(definition)],
+            )
             return variables
           }, {}),
         }

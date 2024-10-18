@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react"
 
 const NEWLINE_CHARACTERS = ["\n", "\r", "\r\n"]
 
-export default function ScrollArea({ children, focus, height, ...props }) {
+export default function ScrollArea({ children, disableScrollOnReturn, focus, height, ...props }) {
   const [scrollTop, setScrollTop] = useState(0)
   const [innerHeight, setInnerHeight] = useState(height)
   const innerRef = useRef()
@@ -19,7 +19,7 @@ export default function ScrollArea({ children, focus, height, ...props }) {
   useInput(
     (input, key) => {
       if (innerHeight < height) return
-      if (key.downArrow || (NEWLINE_CHARACTERS.includes(input) && innerHeight > height)) {
+      if (key.downArrow || (!disableScrollOnReturn && NEWLINE_CHARACTERS.includes(input) && innerHeight > height)) {
         setScrollTop((prev) => Math.min(innerHeight - height, prev + 1))
       }
 
