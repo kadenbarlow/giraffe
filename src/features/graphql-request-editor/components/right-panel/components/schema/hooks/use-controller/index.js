@@ -14,21 +14,26 @@ import {
 export default function useSchema() {
   const [options, setOptions] = useState({})
   const url = useRequestStore((state) => state.url)
+  const setToast = useRequestStore.getState().setToast
 
   const fetchSchema = useCallback(
     debounce(function _fetchSchema(url) {
-      pipe.async(
-        fetchSchemaFromUrl,
-        parseOperationsAndTypesFromSchema,
-        formatOptions,
-        displayFinishedToast,
-        ({ options }) => setOptions(options),
-      )({
-        operations: null,
-        schema: null,
-        types: null,
-        url,
-      })
+      pipe
+        .async(
+          fetchSchemaFromUrl,
+          parseOperationsAndTypesFromSchema,
+          formatOptions,
+          displayFinishedToast,
+          ({ options }) => setOptions(options),
+        )({
+          operations: null,
+          schema: null,
+          types: null,
+          url,
+        })
+        .catch((error) => {
+          setToast({ message: error.message, type: "error" })
+        })
     }, 200),
     [setOptions],
   )
