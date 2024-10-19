@@ -5,10 +5,19 @@ import useRequestStore from "#features/graphql-request-editor/stores/use-request
 import pSBC from "#lib/pSBC.js"
 import useConfig from "#stores/use-config/index.js"
 import Collections from "./components/collections/index.js"
+import History from "./components/history/index.js"
 import Response from "./components/response/index.js"
 import Schema from "./components/schema/index.js"
 
 const TABS = {
+  COLLECTIONS: {
+    jumpKey: "C",
+    value: "Collections",
+  },
+  HISTORY: {
+    jumpKey: "P",
+    value: "History",
+  },
   RESPONSE: {
     jumpKey: "R",
     value: "Response",
@@ -16,10 +25,6 @@ const TABS = {
   SCHEMA: {
     jumpKey: "S",
     value: "Schema",
-  },
-  STORED_COLLECTIONS: {
-    jumpKey: "C",
-    value: "Collections",
   },
 }
 
@@ -38,9 +43,10 @@ export default function RightPanel({ ...props }) {
         setJumpKey(null)
       }
 
-      if (jumpKey === "r") setTab(TABS.RESPONSE)
-      else if (jumpKey === "s") setTab(TABS.SCHEMA)
-      else if (jumpKey === "c") setTab(TABS.STORED_COLLECTIONS)
+      if (jumpKey === TABS.RESPONSE.jumpKey.toLowerCase()) setTab(TABS.RESPONSE)
+      else if (jumpKey === TABS.SCHEMA.jumpKey.toLowerCase()) setTab(TABS.SCHEMA)
+      else if (jumpKey === TABS.COLLECTIONS.jumpKey.toLowerCase()) setTab(TABS.COLLECTIONS)
+      else if (jumpKey === TABS.HISTORY.jumpKey.toLowerCase()) setTab(TABS.HISTORY)
     },
     [jumpKey, setJumpKey],
   )
@@ -55,10 +61,16 @@ export default function RightPanel({ ...props }) {
       width="100%"
       {...props}
     >
-      <Tabs jumpModeEnabled={jumpModeEnabled} tabs={Object.values(TABS)} value={activeTab} />
+      <Tabs
+        jumpModeEnabled={jumpModeEnabled}
+        tabs={[TABS.RESPONSE, TABS.SCHEMA, TABS.COLLECTIONS, TABS.HISTORY]}
+        value={activeTab}
+      />
+
       {activeTab.value === TABS.RESPONSE.value && <Response focus={isFocused} />}
       {activeTab.value === TABS.SCHEMA.value && <Schema focus={isFocused} />}
-      {activeTab.value === TABS.STORED_COLLECTIONS.value && <Collections focus={isFocused} />}
+      {activeTab.value === TABS.COLLECTIONS.value && <Collections focus={isFocused} />}
+      {activeTab.value === TABS.HISTORY.value && <History focus={isFocused} />}
     </Box>
   )
 }

@@ -17,7 +17,7 @@ export default () => {
       focus("header")
     } else if (["v", "i", "h"].includes(input)) {
       focus("bottom-panel")
-    } else if (["r", "s", "c"].includes(input)) {
+    } else if (["r", "s", "c", "p"].includes(input)) {
       focus("right-panel")
     }
     setJumpModeEnabled(false)

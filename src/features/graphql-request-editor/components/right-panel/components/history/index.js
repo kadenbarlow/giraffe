@@ -6,7 +6,7 @@ import useScreenSize from "#hooks/use-screen-size.js"
 import useController from "./hooks/use-controller/index.js"
 
 export default function Collections({ focus, ...props }) {
-  const { collections } = useController()
+  const { options } = useController()
   const jumpModeEnabled = useRequestStore((state) => state.jumpModeEnabled)
   const setRequest = useRequestStore((state) => state.setRequest)
   const { height } = useScreenSize()
@@ -16,21 +16,18 @@ export default function Collections({ focus, ...props }) {
       <NestedSelect
         disabled={jumpModeEnabled}
         focus={focus}
-        onSelect={(request) =>
+        onSelect={(request) => {
           setRequest({
-            filePath: request.filePath,
-            headers: JSON.stringify(request.headers, null, 2),
-            info: JSON.stringify(
-              { description: request.description, filePath: request.filePath, name: request.name },
-              null,
-              2,
-            ),
+            filePath: "",
+            headers: request.headers,
+            info: JSON.stringify({ description: "", filePath: "new-request.json", name: "" }, null, 2),
             query: request.query,
+            response: request.response,
             url: request.url,
-            variables: JSON.stringify(request.variables, null, 2),
+            variables: request.variables,
           })
-        }
-        options={collections}
+        }}
+        options={options}
         optionsHeight={Math.floor(height - 10)}
       />
     </Box>

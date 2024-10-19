@@ -4,6 +4,10 @@ const DEFAULT_SETTINGS = {
   collections: {
     folderPath: `${process.env.HOME}/.config/giraffe/collections`,
   },
+  history: {
+    filePath: `${process.env.HOME}/.config/giraffe/history.json`,
+    requestLimit: 100,
+  },
   theme: {
     // User interface colors
     accent: "#FAB387",
