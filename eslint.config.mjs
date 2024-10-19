@@ -10,10 +10,13 @@ export default [
   {
     languageOptions: {
       globals: {
+        AbortController: "readonly",
+        clearTimeout: "readonly",
         console: "readonly",
         fetch: "readonly",
         process: "readonly",
-      }
+        setTimeout: "readonly",
+      },
     },
     plugins: {
       perfectionist: eslintPluginPerfectionist,
@@ -29,6 +32,11 @@ export default [
       "react/prop-types": "off",
       "sort-destructure-keys/sort-destructure-keys": "error",
       ...eslintPluginReactHooks.configs.recommended.rules,
+    },
+    settings: {
+      react: {
+        version: "detect",
+      },
     }
   },
 ]

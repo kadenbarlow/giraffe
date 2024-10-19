@@ -11,7 +11,8 @@
     "build": "rm -rf ./dist && babel --out-dir=dist src",
     "dev": "npm run build;chmod +x ./dist/cli/index.js; node --inspect=9228 ./dist/cli/index.js",
     "start": "npm run build;chmod +x ./dist/cli/index.js; node ./dist/cli/index.js",
-    "test": "prettier --check . && xo && ava"
+    "lint": "prettier --check src/. && eslint src/.",
+    "prepare": "husky"
   },
   "files": [
     "dist"
@@ -43,7 +44,9 @@
     "eslint-plugin-perfectionist": "^3.6.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-sort-destructure-keys": "^2.0.0"
+    "eslint-plugin-sort-destructure-keys": "^2.0.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10"
   },
   "babel": {
     "presets": [

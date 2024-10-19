@@ -3,7 +3,7 @@
 **A terminal based, keyboard driven GraphQL client**
 
 Giraffe is a TUI graphql client. Inspired by mainly by [Posting](https://github.com/darrenburns/posting), but also by
-[Postman](https://www.postman.com/) or [Insomnia](https://www.insomnia.rest/). 
+[Postman](https://www.postman.com/) or [Insomnia](https://www.insomnia.rest/).
 
 ![Screenshot of Giraffe](./giraffe-screenshot.png)
 
@@ -33,6 +33,7 @@ Giraffe will look for a configuration file at the following paths in order of pr
 - `${process.env.HOME}/.giraffe.json`
 
 The configuration file support the following options:
+
 ```jsonc
 {
   collections: {

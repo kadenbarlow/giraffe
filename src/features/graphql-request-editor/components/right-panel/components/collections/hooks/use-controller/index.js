@@ -30,7 +30,7 @@ export default function useCollections() {
     ;(async () => {
       try {
         const watcher = fs.watch(folderPath, { signal: abortController.current.signal })
-        for await (const event of watcher) setModifiedAt(Date.now())
+        for await (const event of watcher) setModifiedAt(Date.now()) // eslint-disable-line
       } catch (err) {
         if (err.name === "AbortError") return
         throw err
