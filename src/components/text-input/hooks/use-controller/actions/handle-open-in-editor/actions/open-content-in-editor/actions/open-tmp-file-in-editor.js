@@ -8,8 +8,8 @@ export default function openTmpFileInEditor(ctx) {
     writeToStdout("\x1b[?1049l").then(() => {
       const child = spawn(process.env.EDITOR, [tmpFilePath], { stdio: "inherit" })
       child.on("close", async () => {
-        await writeToStdout("\x1b[?1049h") // after closing enter fullscreen and redraw the app
-        await writeToStdout("\u001B[?25l")
+        await writeToStdout("\x1b[?1049h") // after closing enter fullscreen
+        await writeToStdout("\u001B[?25l") // makes the cursor invisible
         return resolve(ctx)
       })
     })

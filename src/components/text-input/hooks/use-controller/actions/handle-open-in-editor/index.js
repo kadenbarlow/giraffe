@@ -6,7 +6,7 @@ export default async function handleOpenInEditor(ctx) {
   const meta = key.ctrl || key.meta
   if (meta && input === "o") {
     const newValue = await openContentInEditor({ content: value, fileType: syntax })
-    return { ...ctx, value: disabled ? `${value} ` : newValue }
+    return { ...ctx, value: disabled ? `${value}\n` : `${newValue}\n` }
   }
   return ctx
 }

@@ -18,6 +18,7 @@ export default async function updateHistory(ctx) {
     headers,
     query,
     response: JSON.stringify(parsedResponse.json, null, 2),
+    responseBodySize: parsedResponse.bodySize,
     responseSize: parsedResponse.responseSize,
     responseTime: parsedResponse.responseTime,
     status: parsedResponse.status,
