@@ -6,7 +6,7 @@
   "license": "GPLv3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kadenbarlow/giraffe"
+    "url": "git+https://github.com/kadenbarlow/giraffe.git"
   },
   "keywords": [
     "tui",
@@ -17,7 +17,9 @@
   "files": [
     "dist"
   ],
-  "bin": "dist/cli/index.js",
+  "bin": {
+    "giraffe": "dist/cli/index.js"
+  },
   "engines": {
     "node": ">=16"
   },
