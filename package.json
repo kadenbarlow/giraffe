@@ -33,7 +33,6 @@
   },
   "dependencies": {
     "clipboardy": "^4.0.0",
-    "gql-generator": "^2.0.0",
     "graphql": "^16.9.0",
     "graphql-tools": "^9.0.2",
     "highlight.js": "^11.10.0",
