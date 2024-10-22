@@ -9,7 +9,7 @@ export default async function sendGraphqlRequest(ctx) {
     headers: {
       "cache-control": "no-cache",
       "Content-Type": "application/json",
-      "User-Agent": "GiraffeClient/0.1.0",
+      "User-Agent": "GiraffeClient/0.1.1",
       ...JSON.parse(headers),
     },
     method: "POST",
