@@ -19,7 +19,15 @@ export default function useController() {
           setOptions(
             history.requests.reduce((opts, request) => {
               const key = crypto.randomUUID()
-              const operation = request.query.match(/(query|mutation|subscription)\s+(\w+)/)[2]
+              const topLevelOperationMatches = request.query.match(/(query|mutation|subscription)\s+(\w+)/)
+              const firstOperationMatches = request.query.match(/([^(query|mutation|subscription)]\w+)\s*(\(|\{)/)
+              const operation =
+                topLevelOperationMatches?.length >= 2
+                  ? topLevelOperationMatches[2]
+                  : firstOperationMatches?.length >= 1
+                    ? firstOperationMatches[1]
+                    : ""
+
               const options = {
                 day: "numeric",
                 hour: "numeric",
@@ -34,15 +42,21 @@ export default function useController() {
               opts[key] = {
                 ...request,
                 key,
-                label: `${datetime} ${request.status} ${request.statusText} ${operation + " "}`,
+                label: `${datetime} ${request.status} ${request.statusText} ${operation}`,
               }
               return opts
             }, {}),
           )
         })
-        .catch(() => setOptions({}))
+        .catch((error) => {
+          setToast({
+            message: error.message,
+            type: "error",
+          })
+          setOptions({})
+        })
     },
-    [filePath],
+    [filePath, setOptions, setToast],
   )
 
   function selectOption(request) {

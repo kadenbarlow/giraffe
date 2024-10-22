@@ -21,6 +21,7 @@ export default function handleInsertions(ctx) {
   const content = NEWLINE_CHARACTERS.includes(input) ? "\n" : input
 
   if (!focus || disabled) return ctx
+  if (content === "\n" && !key.return) return ctx
   if (content === "\n" && !multiline) return ctx
   if (FUNCTION_KEYS.some((pressed) => key[pressed])) return ctx
 

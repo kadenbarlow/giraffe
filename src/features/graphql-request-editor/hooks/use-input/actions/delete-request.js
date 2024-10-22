@@ -15,6 +15,7 @@ export default async function deleteRequest() {
     headers: "{}",
     info: JSON.stringify({ description: "", filePath: "new-request.json", name: "" }, null, 2),
     query: "",
+    savedAt: new Date(),
     url: "",
     variables: "{}",
   })

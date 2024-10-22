@@ -35,5 +35,5 @@ export default async function saveRequest() {
     await fs.unlink(previousPath)
   }
 
-  setRequest({ filePath: parsedInfo.filePath })
+  setRequest({ filePath: parsedInfo.filePath, savedAt: new Date() })
 }

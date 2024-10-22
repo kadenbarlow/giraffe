@@ -10,6 +10,7 @@ const useRequestStore = create((set) => ({
   jumpModeEnabled: false,
   query: "",
   response: "",
+  savedAt: new Date(),
   setHeaders: (headers) => set({ headers }),
   setInfo: (info) => set({ info }),
   setJumpKey: (jumpKey) => set({ jumpKey }),
