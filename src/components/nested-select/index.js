@@ -44,7 +44,7 @@ export default function NestedSelect(props) {
           width={50}
         />
       </Box>
-      <ScrollArea disableScrollOnReturn={true} height={scrollHeight}>
+      <ScrollArea disableScrollOnReturn={true} focus={Boolean(focus && selectedOption)} height={scrollHeight}>
         {Object.entries(options).map(renderOptions)}
       </ScrollArea>
     </Box>

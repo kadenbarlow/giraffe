@@ -82,6 +82,7 @@ export default function useController(props) {
   }, [focus, onChange, syntax, syntaxTheme, value, width])
 
   return {
+    disabled,
     formattedValue,
     inkProps,
     isFocused: focus,

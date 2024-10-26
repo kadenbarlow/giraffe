@@ -19,6 +19,8 @@ export default function ScrollArea({ children, disableScrollOnReturn, focus, hei
   useInput(
     (input, key) => {
       if (innerHeight < height) return
+      else if (input === "\n" && !key.return) return
+
       if (key.downArrow || (!disableScrollOnReturn && NEWLINE_CHARACTERS.includes(input) && innerHeight > height)) {
         setScrollTop((prev) => Math.min(innerHeight - height, prev + 1))
       }

@@ -8,11 +8,11 @@ import {
   updateHistory,
 } from "./actions/index.js"
 
-export default function sendRequest() {
+export default async function sendRequest() {
   const { headers, query, setResponse, setToast, url, variables } = useRequestStore.getState()
 
   try {
-    return pipe.async(
+    return await pipe.async(
       displayLoadingToast,
       sendGraphqlRequest,
       parseResponse,
@@ -37,10 +37,15 @@ export default function sendRequest() {
       variables,
     })
   } catch (error) {
-    setResponse(error.message)
     if (error.status) {
+      setResponse(error.message)
       setToast({ message: `${error.status} ${error.statusText}`, type: "error" })
     } else {
+      if (error instanceof TypeError && error.message.includes("fetch failed")) {
+        setResponse(`Error: connect ECONNREFUSED ${url}`)
+      } else {
+        setResponse(error.message)
+      }
       setToast({ message: "Request failed", type: "error" })
     }
   }
