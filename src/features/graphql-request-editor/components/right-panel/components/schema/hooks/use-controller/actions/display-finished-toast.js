@@ -3,7 +3,7 @@ import useRequestStore from "#features/graphql-request-editor/stores/use-request
 export default function displayLoadingToast(ctx) {
   useRequestStore.getState().setToast({
     message: "Refreshed schema",
-    timeout: 2000,
+    timeout: 3000,
     type: "success",
   })
   return ctx

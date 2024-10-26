@@ -4,15 +4,16 @@ import Tabs from "#components/tabs/index.js"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
 import pSBC from "#lib/pSBC.js"
 import useConfig from "#stores/use-config/index.js"
-import Collections from "./components/collections/index.js"
-import History from "./components/history/index.js"
-import Response from "./components/response/index.js"
-import Schema from "./components/schema/index.js"
+import { Collections, Generate, History, Response, Schema } from "./components/index.js"
 
 const TABS = {
   COLLECTIONS: {
     jumpKey: "C",
     value: "Collections",
+  },
+  GENERATE: {
+    jumpKey: "G",
+    value: "Generate",
   },
   HISTORY: {
     jumpKey: "P",
@@ -47,6 +48,7 @@ export default function RightPanel({ ...props }) {
       else if (jumpKey === TABS.SCHEMA.jumpKey.toLowerCase()) setTab(TABS.SCHEMA)
       else if (jumpKey === TABS.COLLECTIONS.jumpKey.toLowerCase()) setTab(TABS.COLLECTIONS)
       else if (jumpKey === TABS.HISTORY.jumpKey.toLowerCase()) setTab(TABS.HISTORY)
+      else if (jumpKey === TABS.GENERATE.jumpKey.toLowerCase()) setTab(TABS.GENERATE)
     },
     [jumpKey, setJumpKey],
   )
@@ -63,7 +65,7 @@ export default function RightPanel({ ...props }) {
     >
       <Tabs
         jumpModeEnabled={jumpModeEnabled}
-        tabs={[TABS.RESPONSE, TABS.SCHEMA, TABS.COLLECTIONS, TABS.HISTORY]}
+        tabs={[TABS.RESPONSE, TABS.SCHEMA, TABS.COLLECTIONS, TABS.HISTORY, TABS.GENERATE]}
         value={activeTab}
       />
 
@@ -71,6 +73,7 @@ export default function RightPanel({ ...props }) {
       {activeTab.value === TABS.SCHEMA.value && <Schema focus={isFocused} />}
       {activeTab.value === TABS.COLLECTIONS.value && <Collections focus={isFocused} />}
       {activeTab.value === TABS.HISTORY.value && <History focus={isFocused} />}
+      {activeTab.value === TABS.GENERATE.value && <Generate focus={isFocused} />}
     </Box>
   )
 }
