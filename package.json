@@ -2,7 +2,7 @@
   "name": "@kadenbarlow/giraffe",
   "description": "A terminal based GraphQL client",
   "author": "Kaden Barlow <kadenbarlow@gmail.com> (https://kadenbarlow.dev)",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "GPLv3",
   "repository": {
     "type": "git",
