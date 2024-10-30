@@ -1,4 +1,7 @@
-export default function generateJavascriptFetch(ctx) {
+import safelyFormatGraphql from "#lib/safely-format-graphql.js"
+import safelyParseJson from "#lib/safely-parse-json.js"
+
+export default async function generateJavascriptFetch(ctx) {
   const { headers, query, url, variables } = ctx
 
   return [
@@ -7,8 +10,8 @@ export default function generateJavascriptFetch(ctx) {
     'headers.append("Content-Type", "application/json");',
     ...Object.entries(JSON.parse(headers)).map(([key, value]) => `headers.append("${key}", "${value}");`),
     "",
-    `const query = \`${query}\``,
-    `const variables = ${variables ? variables : {}}`,
+    `const query = \`${await safelyFormatGraphql(query)}\``,
+    `const variables = ${safelyParseJson(variables) ? JSON.stringify(safelyParseJson(variables), null, 2) : {}}`,
     "",
     "const requestOptions = {",
     "  body: JSON.stringify({ query, variables }),",

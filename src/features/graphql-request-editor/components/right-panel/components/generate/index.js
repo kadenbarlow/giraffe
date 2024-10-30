@@ -17,8 +17,8 @@ export default function Code({ focus, ...props }) {
       <NestedSelect
         disabled={jumpModeEnabled}
         focus={focus}
-        onSelect={(option) => {
-          const generatedContent = option.function(useRequestStore.getState())
+        onSelect={async (option) => {
+          const generatedContent = await option.function(useRequestStore.getState())
           clipboard.write(generatedContent)
           setToast({ message: "Copied to clipboard", timeout: 3000, type: "success" })
         }}
