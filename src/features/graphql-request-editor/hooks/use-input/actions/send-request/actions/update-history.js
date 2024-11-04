@@ -26,7 +26,7 @@ export default async function updateHistory(ctx) {
     url,
     variables,
   })
-  history.requests.splice(0, Math.min(historySettings.requestLimit, history.requests.length))
+  history.requests = history.requests.slice(0, Math.min(historySettings.requestLimit, history.requests.length))
   await fs.mkdir(historySettings.filePath.split("/").slice(0, -1).join("/"), { recursive: true })
   await fs.writeFile(historySettings.filePath, JSON.stringify(history, null, 2))
 
