@@ -14,6 +14,7 @@ export default async function saveRequest() {
 
   const parsedInfo = safelyParseJson(info)
   if (!parsedInfo) return
+  if (!parsedInfo.filePath.endsWith(".json")) parsedInfo.filePath = `${parsedInfo.filePath}.json`
 
   const fileData = JSON.stringify(
     {
@@ -35,5 +36,5 @@ export default async function saveRequest() {
     await fs.unlink(previousPath)
   }
 
-  setRequest({ filePath: parsedInfo.filePath, savedAt: new Date() })
+  setRequest({ filePath: parsedInfo.filePath, info: JSON.stringify(parsedInfo, null, 2), savedAt: new Date() })
 }

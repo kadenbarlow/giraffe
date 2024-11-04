@@ -12,7 +12,7 @@ export default function useController() {
   const [options, setOptions] = useState({})
 
   useEffect(
-    function initializeCollections() {
+    function initializeHistory() {
       fs.readFile(filePath, "utf8")
         .then((contents) => {
           const history = JSON.parse(contents)
@@ -48,11 +48,7 @@ export default function useController() {
             }, {}),
           )
         })
-        .catch((error) => {
-          setToast({
-            message: error.message,
-            type: "error",
-          })
+        .catch(() => {
           setOptions({})
         })
     },
