@@ -35,7 +35,7 @@ export default function Header(props) {
         <Text bold={true} color={theme.accent}>
           Giraffe
         </Text>
-        <Text color={theme.accent}> 0.1.4</Text>
+        <Text color={theme.accent}> 0.1.5</Text>
       </Box>
     </Box>
   )
