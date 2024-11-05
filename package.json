@@ -29,8 +29,7 @@
     "dev": "npm run build;chmod +x ./dist/cli/index.js; node --inspect=9228 ./dist/cli/index.js",
     "start": "npm run build;chmod +x ./dist/cli/index.js; node ./dist/cli/index.js",
     "lint": "prettier --check src/. && eslint src/.",
-    "prepare": "husky",
-    "publish": "npm run build && npm publish"
+    "prepare": "husky"
   },
   "dependencies": {
     "clipboardy": "^4.0.0",
