@@ -5,10 +5,12 @@ import Footer from "./components/footer/index.js"
 import Header from "./components/header/index.js"
 import LeftPanel from "./components/left-panel/index.js"
 import RightPanel from "./components/right-panel/index.js"
+import useCheckForUpdates from "./hooks/use-check-for-updates/index.js"
 import useInput from "./hooks/use-input/index.js"
 
 export default function GraphqlRequestEditor() {
   useInput()
+  useCheckForUpdates()
 
   return (
     <Box flexDirection="column" height="100%" width="100%">

@@ -1,5 +1,6 @@
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
 import pipe from "#lib/pipe/index.js"
+import useConfig from "#stores/use-config/index.js"
 import {
   displayFinalToast,
   displayLoadingToast,
@@ -8,8 +9,9 @@ import {
   updateHistory,
 } from "./actions/index.js"
 
-export default async function sendRequest() {
+export default async function sendRequest(attempts = 0) {
   const { headers, query, setResponse, setToast, url, variables } = useRequestStore.getState()
+  const { requests: requestSettings } = useConfig.getState()
 
   try {
     return await pipe.async(
@@ -42,6 +44,10 @@ export default async function sendRequest() {
       setToast({ message: `${error.status} ${error.statusText}`, type: "error" })
     } else {
       if (error instanceof TypeError && error.message.includes("fetch failed")) {
+        if (attempts < requestSettings.retryCount) {
+          return setTimeout(() => sendRequest(attempts + 1), requestSettings.retryDelay)
+        }
+
         setResponse(`Error: connect ECONNREFUSED ${url}`)
       } else {
         setResponse(error.message)

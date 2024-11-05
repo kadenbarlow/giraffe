@@ -8,6 +8,10 @@ const DEFAULT_SETTINGS = {
     filePath: `${process.env.HOME}/.config/giraffe/history.json`,
     requestLimit: 100,
   },
+  requests: {
+    retryCount: 3,
+    retryDelay: 500,
+  },
   theme: {
     // User interface colors
     accent: "#FAB387",

@@ -2,7 +2,7 @@
   "name": "@kadenbarlow/giraffe",
   "description": "A terminal based GraphQL client",
   "author": "Kaden Barlow <kadenbarlow@gmail.com> (https://kadenbarlow.dev)",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "license": "GPLv3",
   "repository": {
     "type": "git",
@@ -29,7 +29,8 @@
     "dev": "npm run build;chmod +x ./dist/cli/index.js; node --inspect=9228 ./dist/cli/index.js",
     "start": "npm run build;chmod +x ./dist/cli/index.js; node ./dist/cli/index.js",
     "lint": "prettier --check src/. && eslint src/.",
-    "prepare": "husky"
+    "prepare": "husky",
+    "publish": "npm run build && npm publish"
   },
   "dependencies": {
     "clipboardy": "^4.0.0",
