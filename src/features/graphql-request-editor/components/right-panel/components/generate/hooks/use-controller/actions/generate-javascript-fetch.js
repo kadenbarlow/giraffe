@@ -1,3 +1,4 @@
+import removeKey from "#lib/remove-key.js"
 import safelyFormatGraphql from "#lib/safely-format-graphql.js"
 import safelyParseJson from "#lib/safely-parse-json.js"
 
@@ -11,7 +12,7 @@ export default async function generateJavascriptFetch(ctx) {
     ...Object.entries(JSON.parse(headers)).map(([key, value]) => `headers.append("${key}", "${value}");`),
     "",
     `const query = \`${await safelyFormatGraphql(query)}\``,
-    `const variables = ${safelyParseJson(variables) ? JSON.stringify(safelyParseJson(variables), null, 2) : {}}`,
+    `const variables = ${safelyParseJson(variables) ? JSON.stringify(removeKey(safelyParseJson(variables), "__typename"), null, 2) : {}}`,
     "",
     "const requestOptions = {",
     "  body: JSON.stringify({ query, variables }),",

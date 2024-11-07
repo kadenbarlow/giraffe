@@ -1,15 +1,35 @@
 import crypto from "crypto"
 
+function find(definition, key) {
+  if (definition[key]) return definition[key]
+  if (definition.type) return find(definition.type, key)
+  if (definition.ofType) return find(definition.ofType, key)
+  return null
+}
+
 function parseVariableDefinitionType(definition, result = {}) {
-  if (definition.ofType || definition.type) {
-    return parseVariableDefinitionType(definition.ofType || definition.type, result)
+  if (definition.ofType) {
+    return parseVariableDefinitionType(definition.ofType, result)
   } else if (definition._fields) {
     return Object.entries(definition._fields).reduce((fieldProperties, [property, field]) => {
       fieldProperties[property] = parseVariableDefinitionType(field)
       return fieldProperties
     }, result)
+  } else if (definition.type?.toString() && find(definition, "_fields")) {
+    // Add typename to indicate whether a property is an an object or array, or optional or required
+    return {
+      __typename: definition.type.toString(),
+      ...parseVariableDefinitionType(definition.type, result),
+    }
   } else {
-    return definition.name
+    // Handle GraphQL enums
+    const values = find(definition, "_values")
+    if (values) {
+      const enumString = values.map((graphqlEnum) => graphqlEnum.value).join("|")
+      return definition.type?.toString().startsWith("[") ? [enumString] : enumString
+    }
+
+    return definition.type?.toString() || definition.name
   }
 }
 
