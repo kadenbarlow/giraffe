@@ -8,6 +8,7 @@ export default function useController() {
   const [collections, setCollections] = useState({})
   const folderPath = useConfig.getState().collections.folderPath
   const savedAt = useRequestStore((state) => state.savedAt)
+  const setRequest = useRequestStore((state) => state.setRequest)
   const setToast = useRequestStore.getState().setToast
 
   useEffect(() => {
@@ -25,7 +26,22 @@ export default function useController() {
       })
   }, [folderPath, setToast, savedAt])
 
+  const removeTabs = (string) => string.replace(/\t/g, "  ")
+  const selectRequest = (request) => {
+    setRequest({
+      filePath: request.filePath,
+      headers: removeTabs(JSON.stringify(request.headers, null, 2)),
+      info: removeTabs(
+        JSON.stringify({ description: request.description, filePath: request.filePath, name: request.name }, null, 2),
+      ),
+      query: removeTabs(request.query),
+      url: removeTabs(request.url),
+      variables: removeTabs(JSON.stringify(request.variables, null, 2)),
+    })
+  }
+
   return {
     collections,
+    selectRequest,
   }
 }
