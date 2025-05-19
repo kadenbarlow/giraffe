@@ -6,6 +6,7 @@ import handleCopy from "./handle-copy.js"
 import handleDeletions from "./handle-deletions.js"
 import handleInsertions from "./handle-insertions.js"
 import handleOpenInEditor from "./handle-open-in-editor/index.js"
+import removeTabs from "./remove-tabs.js"
 import updateCursorOffset from "./update-cursor-offset.js"
 import updateFormattedValue from "./update-formatted-value.js"
 import updateParent from "./update-parent.js"
@@ -20,6 +21,7 @@ export {
   handleDeletions,
   handleInsertions,
   handleOpenInEditor,
+  removeTabs,
   updateCursorOffset,
   updateFormattedValue,
   updateParent,

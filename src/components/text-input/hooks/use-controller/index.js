@@ -10,6 +10,7 @@ import {
   handleDeletions,
   handleInsertions,
   handleOpenInEditor,
+  removeTabs,
   updateCursorOffset,
   updateFormattedValue,
   updateParent,
@@ -24,6 +25,7 @@ export default function useController(props) {
   useInput(
     (input, key) =>
       pipe.async(
+        removeTabs,
         handleDeletions,
         handleInsertions,
         handleArrowKeys,
