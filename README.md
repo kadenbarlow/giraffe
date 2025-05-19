@@ -1,5 +1,7 @@
 # giraffe
 
+[![npm version](https://badge.fury.io/js/@kadenbarlow%2Fgiraffe.svg)](https://badge.fury.io/js/@kadenbarlow%2Fgiraffe)
+
 **A terminal based, keyboard driven GraphQL client**
 
 Giraffe is a TUI graphql client. Inspired by mainly by [Posting](https://github.com/darrenburns/posting), but also by
