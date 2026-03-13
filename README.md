@@ -26,7 +26,7 @@ Key features include:
 Giraffe can be installed using `npm` and currently has only been tested on MacOS.
 
 ```bash
-$ npm install --global @kadenbarlow/giraffe
+npm install --global @kadenbarlow/giraffe
 ```
 
 ## Configuration
