@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import useRequestStore from "#features/graphql-request-editor/stores/use-request-store.js"
 import debounce from "#lib/debounce.js"
 import pipe from "#lib/pipe/index.js"
@@ -16,26 +16,27 @@ export default function useSchema() {
   const url = useRequestStore((state) => state.url)
   const setToast = useRequestStore.getState().setToast
 
-  const fetchSchema = useCallback(
-    debounce(function _fetchSchema(url) {
-      pipe
-        .async(
-          fetchSchemaFromUrl,
-          parseOperationsAndTypesFromSchema,
-          formatOptions,
-          displayFinishedToast,
-          ({ options }) => setOptions(options),
-        )({
-          operations: null,
-          schema: null,
-          types: null,
-          url,
-        })
-        .catch((error) => {
-          setToast({ message: error.message, type: "error" })
-        })
-    }, 200),
-    [setOptions],
+  const fetchSchema = useMemo(
+    () =>
+      debounce(function _fetchSchema(url) {
+        pipe
+          .async(
+            fetchSchemaFromUrl,
+            parseOperationsAndTypesFromSchema,
+            formatOptions,
+            displayFinishedToast,
+            ({ options }) => setOptions(options),
+          )({
+            operations: null,
+            schema: null,
+            types: null,
+            url,
+          })
+          .catch((error) => {
+            setToast({ message: error.message, type: "error" })
+          })
+      }, 200),
+    [setToast],
   )
 
   useEffect(() => {
