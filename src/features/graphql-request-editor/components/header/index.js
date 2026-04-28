@@ -14,6 +14,8 @@ export default function Header(props) {
   const url = useRequestStore((state) => state.url)
   const setUrl = useRequestStore((state) => state.setUrl)
   const jumpModeEnabled = useRequestStore((state) => state.jumpModeEnabled)
+  const editorSession = useRequestStore((state) => state.editorSession)
+  const redrawMarker = editorSession % 2 === 0 ? "\u200B" : "\u2060"
 
   return (
     <Box height={1} {...props} width="100%">
@@ -35,7 +37,7 @@ export default function Header(props) {
         <Text bold={true} color={theme.accent}>
           Giraffe
         </Text>
-        <Text color={theme.accent}> 0.1.10</Text>
+        <Text color={theme.accent}>{` 0.1.10${redrawMarker}`}</Text>
       </Box>
     </Box>
   )

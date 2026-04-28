@@ -3,6 +3,7 @@ import { create } from "zustand"
 import useConfig from "#stores/use-config/index.js"
 
 const useRequestStore = create((set) => ({
+  editorSession: 0,
   filePath: "",
   headers: "{}",
   info: JSON.stringify({ description: "", filePath: "new-request.json", name: "" }, null, 2),
@@ -11,6 +12,7 @@ const useRequestStore = create((set) => ({
   query: "",
   response: "",
   savedAt: new Date(),
+  setEditorSession: () => set((state) => ({ editorSession: state.editorSession + 1 })),
   setHeaders: (headers) => set({ headers }),
   setInfo: (info) => set({ info }),
   setJumpKey: (jumpKey) => set({ jumpKey }),
