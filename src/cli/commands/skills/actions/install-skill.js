@@ -36,6 +36,31 @@ Use this skill when you need to:
 - inspect a generated query or mutation and its variable shape
 - execute GraphQL requests against a local or remote server
 - load URL and headers from a saved Giraffe request file
+- find the right saved collection for an environment or user
+
+## Find a saved request
+
+List saved collections first when the user refers to an environment or person
+collection, or request name instead of giving a URL directly.
+
+\`\`\`bash
+${command} list
+\`\`\`
+
+This prints file paths followed by request names. Use that output to choose the
+right \`--request <file>\` value.
+
+Example: if the user says something like \`login to localhost as admin\`,
+first run \`${command} list\`, find the matching saved request such as
+\`collection/localhost-admin.json\`, and then use:
+
+\`\`\`bash
+${command} introspect --request collection/localhost-admin.json
+${command} request --request collection/localhost-admin.json --name <operation> --type mutation --variables '{}'
+\`\`\`
+
+Prefer \`--request <file>\` over manually reconstructing the URL and headers
+when a saved request already matches the user's environment.
 
 ## Introspect a schema
 
@@ -86,16 +111,19 @@ ${command} request --request <file>
 
 ## Recommended workflow
 
-1. Run introspect with a URL to list available operations.
-2. Inspect a specific operation with \`--name\` and \`--type\`.
-3. Copy the variable shape from introspect output.
-4. Run the matching request command with correctly shaped variables.
+1. If the user mentions an environment, app, or person, run \`${command} list\` first.
+2. Use the matching saved request with \`--request <file>\` when possible.
+3. Run introspect with a URL or saved request to list available operations.
+4. Inspect a specific operation with \`--name\` and \`--type\`.
+5. Copy the variable shape from introspect output.
+6. Run the matching request command with correctly shaped variables.
 
 ## Notes
 
 - When using \`--name\`, include \`--type query\` or \`--type mutation\`.
 - \`introspect\` shows the variable structure expected by generated operations.
 - \`request\` expects GraphQL variables JSON, not flattened field arguments.
+- \`list\` is the fastest way to discover saved requests for specific environments like localhost, mydot, or a specific user.
 - \`--request <file>\` loads URL, headers, query, and variables from a saved request file.
 `
 }

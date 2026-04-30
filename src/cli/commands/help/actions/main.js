@@ -10,6 +10,7 @@ const MAIN_HELP = [
   "",
   usage("$ giraffe", "Open the TUI"),
   usage("$ giraffe introspect", "Inspect a schema and list or generate operations"),
+  usage("$ giraffe list", "List saved collections by file path and name"),
   usage("$ giraffe request", "Execute a saved request, raw query, or generated operation"),
   usage("$ giraffe skills", "Install agent skills for local GraphQL workflows"),
   "",

@@ -4,6 +4,7 @@ import pipe from "#lib/pipe/index.js"
 import { enterFullscreen, exitFullscreen, processArgv, renderApp, waitUntilExit } from "./actions/index.js"
 import * as helpCommands from "./commands/help/index.js"
 import introspect from "./commands/introspect/index.js"
+import list from "./commands/list/index.js"
 import request from "./commands/request/index.js"
 import skills from "./commands/skills/index.js"
 
@@ -22,6 +23,8 @@ try {
     await request(ctx)
   } else if (ctx.command === "introspect") {
     await introspect(ctx)
+  } else if (ctx.command === "list") {
+    await list(ctx)
   } else if (ctx.command === "skills") {
     await skills(ctx)
   } else {
