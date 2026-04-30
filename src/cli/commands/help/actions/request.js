@@ -53,7 +53,7 @@ const REQUEST_HELP = [
   "",
   example(
     "Generate and execute a mutation using a saved request's url and headers",
-    `giraffe request --request applause/localhost-mydot-kaden.json --name updateUser --type mutation --variables '{"input":{"id":"123"}}'`,
+    `giraffe request --request collection/example.json --name updateUser --type mutation --variables '{"input":{"id":"123"}}'`,
   ),
   "",
 ].join("\n")

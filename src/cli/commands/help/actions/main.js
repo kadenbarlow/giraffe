@@ -9,6 +9,7 @@ const MAIN_HELP = [
   "Usage: giraffe [command] [options...]",
   "",
   usage("$ giraffe", "Open the TUI"),
+  usage("$ giraffe introspect", "Inspect a schema and list or generate operations"),
   usage("$ giraffe request", "Execute a saved request, raw query, or generated operation"),
   "",
   section(
