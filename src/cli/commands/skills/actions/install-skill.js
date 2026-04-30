@@ -1,32 +1,22 @@
 import fs from "fs/promises"
 import path from "path"
 
-function shellQuote(value) {
-  return `'${String(value).replaceAll("'", `'"'"'`)}'`
-}
-
 function createExecutableCommand() {
-  return `node ${shellQuote(path.resolve(process.argv[1]))}`
+  return "giraffe"
 }
 
 function createSkillContent(command) {
   return `---
 name: giraffe
-description: Inspect GraphQL schemas and execute GraphQL requests with the local Giraffe CLI. Use when you need to discover queries or mutations, inspect an operation, or test a GraphQL server.
+description: Inspect GraphQL schemas and execute GraphQL requests with the Giraffe CLI. Use when you need to discover queries or mutations, inspect an operation, or test a GraphQL server.
 ---
 
 # Giraffe
 
-Use this local Giraffe CLI command when working with GraphQL from the terminal:
+Use this Giraffe CLI command when working with GraphQL from the terminal:
 
 \`\`\`bash
 ${command}
-\`\`\`
-
-If the command is not available on the machine, install it with:
-
-\`\`\`bash
-npm install -g @kadenbarlow/giraffe
 \`\`\`
 
 ## When to use this skill
