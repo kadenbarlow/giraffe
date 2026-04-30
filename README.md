@@ -35,15 +35,15 @@ brew install kadenbarlow/tap/giraffe
 Run the full publish flow with:
 
 ```bash
-HOMEBREW_TAP_REPO_PATH=../homebrew-tap npm run publish
+HOMEBREW_TAP_REPO_PATH=../homebrew-tap npm run release
 ```
 
 This will:
 
-1. open your editor so you can write the GitHub release title and notes
-2. create the GitHub release for `v<package.json version>`
-3. build and publish the npm package
-4. build the SEA binary
+1. build and publish the npm package
+2. build the SEA binary
+3. open your editor so you can write the GitHub release title and notes
+4. create the GitHub release for `v<package.json version>`
 5. package and upload `dist/giraffe-darwin-arm64.tar.gz` to the release with `gh release upload --clobber`
 6. update `Formula/giraffe.rb` in your tap repo
 
@@ -55,11 +55,11 @@ The release editor format is:
 You can still run the steps separately:
 
 ```bash
-npm run publish:npm
-HOMEBREW_TAP_REPO_PATH=../homebrew-tap npm run publish:homebrew
+npm run release:npm
+HOMEBREW_TAP_REPO_PATH=../homebrew-tap npm run release:homebrew
 ```
 
-`publish:homebrew` builds the SEA binary, packages the current platform tarball, uploads it to the matching GitHub release with `gh release upload --clobber`, and updates `Formula/giraffe.rb` in your tap repo for just that architecture.
+`release:homebrew` builds the SEA binary, opens your editor for GitHub release notes, creates the GitHub release, packages the current platform tarball, uploads it with `gh release upload --clobber`, and updates `Formula/giraffe.rb` in your tap repo for just that architecture.
 
 Right now the Homebrew formula only supports the architecture you publish from, for example `arm64` on Apple Silicon.
 

@@ -32,9 +32,9 @@
     "start": "npm run build && node ./dist/cli/index.js",
     "lint": "prettier --check src/. && eslint src/.",
     "prepare": "husky",
-    "publish": "node ./scripts/publish.mjs",
-    "publish:npm": "npm run build && npm publish",
-    "publish:homebrew": "npm run build:sea && HOMEBREW_TAP_REPO_PATH=../homebrew-tap node ./scripts/publish-homebrew.mjs"
+    "release": "node ./scripts/publish.mjs",
+    "release:npm": "npm run build && npm publish",
+    "release:homebrew": "npm run build:sea && HOMEBREW_TAP_REPO_PATH=../homebrew-tap node ./scripts/publish-homebrew.mjs"
   },
   "dependencies": {
     "clipboardy": "^4.0.0",
