@@ -8,6 +8,7 @@ export default function processArgv(ctx) {
       headers: { type: "string" },
       help: { shortFlag: "h", type: "boolean" },
       name: { type: "string" },
+      outputDir: { type: "string" },
       query: { type: "string" },
       request: { type: "string" },
       type: { type: "string" },

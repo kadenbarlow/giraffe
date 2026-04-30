@@ -5,6 +5,7 @@ import { enterFullscreen, exitFullscreen, processArgv, renderApp, waitUntilExit 
 import * as helpCommands from "./commands/help/index.js"
 import introspect from "./commands/introspect/index.js"
 import request from "./commands/request/index.js"
+import skills from "./commands/skills/index.js"
 
 try {
   const ctx = processArgv({
@@ -21,6 +22,8 @@ try {
     await request(ctx)
   } else if (ctx.command === "introspect") {
     await introspect(ctx)
+  } else if (ctx.command === "skills") {
+    await skills(ctx)
   } else {
     await pipe.async(enterFullscreen, renderApp, waitUntilExit, exitFullscreen)(ctx)
   }
