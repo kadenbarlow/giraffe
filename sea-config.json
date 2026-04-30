@@ -1,0 +1,8 @@
+{
+  "main": "./scripts/sea-launcher.cjs",
+  "output": "./dist/sea-prep.blob",
+  "disableExperimentalSEAWarning": true,
+  "assets": {
+    "sea-app.mjs": "./dist/sea-entry.mjs"
+  }
+}

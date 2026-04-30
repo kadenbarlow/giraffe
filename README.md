@@ -23,11 +23,45 @@ Key features include:
 
 ## Installation
 
-Giraffe can be installed using `npm` and currently has only been tested on MacOS.
+Giraffe can be installed using `npm` or `brew` and currently has only been tested on MacOS.
 
 ```bash
 npm install --global @kadenbarlow/giraffe
+brew install kadenbarlow/tap/giraffe
 ```
+
+## Publishing
+
+Run the full publish flow with:
+
+```bash
+HOMEBREW_TAP_REPO_PATH=../homebrew-tap npm run publish
+```
+
+This will:
+
+1. open your editor so you can write the GitHub release title and notes
+2. create the GitHub release for `v<package.json version>`
+3. build and publish the npm package
+4. build the SEA binary
+5. package and upload `dist/giraffe-darwin-arm64.tar.gz` to the release with `gh release upload --clobber`
+6. update `Formula/giraffe.rb` in your tap repo
+
+The release editor format is:
+
+- first line: release title
+- remaining lines: release notes
+
+You can still run the steps separately:
+
+```bash
+npm run publish:npm
+HOMEBREW_TAP_REPO_PATH=../homebrew-tap npm run publish:homebrew
+```
+
+`publish:homebrew` builds the SEA binary, packages the current platform tarball, uploads it to the matching GitHub release with `gh release upload --clobber`, and updates `Formula/giraffe.rb` in your tap repo for just that architecture.
+
+Right now the Homebrew formula only supports the architecture you publish from, for example `arm64` on Apple Silicon.
 
 ## Configuration
 
